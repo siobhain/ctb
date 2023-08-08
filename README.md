@@ -41,7 +41,7 @@ This is a simple tool that can be used by groups in the CVC sector to aid in man
 This is a simple tool that can be used by groups in the CVC sector to aid in management and administration of tasks assigned to members of the group.  There is no builtin notion of story points so I created custom labels ex 2Points, 4Points, 8Points. I used Project Milestones to determine sprint. As this was a one person project team velocity did not come into play.
 
 ### Agile Metodology
-Using github to plan sprints is challenging, some workarounds were needed such as creating US (user story) & EPIC templaites from Github Issues. I tried as best where possibke to automatically close/resolve US & EIPS's via commit message keywords. A learning process I found it necessary to use a keyword (either Fix, Close, Resolve) for each issue number in situation where multiple issues were covered in the same commit.
+Using github to plan sprints is challenging, some workarounds were needed such as creating US (user story) & EPIC templaites from Github Issues. I tried as best where possibke to automatically close/resolve US & EIPS's via commit message keywords. A learning process I found it necessary to use a keyword (either Fix, Close, Resolve) for each issue number in situation where multiple issues were covered in the same commit & comma seperate each as well.
 
 There are no builtin  story points so I created custom labels ex 2Points, 4Points, 8Points. I used Project Milestones to determine sprint. As this was a one person project team velocity did not come into play.
 
