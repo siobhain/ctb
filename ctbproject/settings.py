@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ctbapp-67038c5a6f0e.herokuapp.com','8000-siobhain-ctb-ii4y9sbki1o.ws-eu102.gitpod.io' ]
+ALLOWED_HOSTS = ['ctbapp-67038c5a6f0e.herokuapp.com', '8000-siobhain-ctb-ii4y9sbki1o.ws-eu102.gitpod.io']
 
 
 # Application definition
@@ -43,14 +43,26 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'cloudinary_storage',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'cloudinary',
     'taskapp',
 ]
 
+# sob AllAuth library config
+# sob Turn off email verification for user registration and login
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+
 # sob For forever-cacheable files and compression support
 # sob This combines automatic compression with the caching behaviour
 # provided by Django’s ManifestStaticFilesStorage backend
-# actually Matt says un the masterclass to comment this out 
+# actually Matt says un the masterclass to comment this out
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedMani...."
 
 
@@ -81,6 +93,15 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'ctbproject.wsgi.application'
@@ -146,8 +167,8 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 # sob Configure staticfiles as per whitenoise docs
-# sob Use the static template tag to refer to your static files, 
-#     rather than writing the URL Ex
+# sob Use the static template tag to refer to your static files,
+# rather than writing the URL Ex
 #       {% load static %}
 #       <img src="{% static "images/hi.jpg" %}" alt="Hi!">
 #       <!-- NOT THIS -->

@@ -1,16 +1,15 @@
 <h1> Community Task Board </h1>
 
-Ireland’s community, voluntary and charity sector makes a very substantial contribution to society in general. There are almost 10,000 registered charities and a further 20,000+ organisations in Ireland’s wider nonprofit sector.
-
-This is a simple tool that can be used by groups in the CVC sector to aid in management and administration of tasks assigned to members of the group.
+Ireland’s community, voluntary and charity sector makes a very substantial contribution to society in general, There are almost 10,000 registered charities and a further 20,000+ organisations in Ireland’s wider nonprofit sector. This app is a simple tool that can be used by groups in this sector to aid in management and administration of tasks assigned to members of the group.
 
 ## Table of Contents
   - [About](#about)
-  - [Agile Methodology](#agile)
-  - [User Experience Design](#user-experience)
+  - [Agile Methodology](#agile-methodology)
+  - [User Experience Design](#user-experience-design)
     - [Stategy](#strategy)
         - [Owner Goals](#site-owner-goals)
         - [User Goals](#user-goals)
+        - [Target Audience](#target-audience)
     - [Scope / User Stories](#user-stories)
     - [Structure](#structure)
       - [Database](#database)
@@ -36,46 +35,54 @@ This is a simple tool that can be used by groups in the CVC sector to aid in man
   - [Credits](#credits)
   - [Acknowledgements](#acknowledgements)
 
-  ### About
+### About
 
-This is a simple tool that can be used by groups in the CVC sector to aid in management and administration of tasks assigned to members of the group.  There is no builtin notion of story points so I created custom labels ex 2Points, 4Points, 8Points. I used Project Milestones to determine sprint. As this was a one person project team velocity did not come into play.
+This is a simple tool that can be used by groups in the CVC sector to aid in management and administration of tasks assigned to members of the group. 
 
 ### Agile Metodology
-Using github to plan sprints is challenging, some workarounds were needed such as creating US (user story) & EPIC templaites from Github Issues. I tried as best where possibke to automatically close/resolve US & EIPS's via commit message keywords. A learning process I found it necessary to use a keyword (either Fix, Close, Resolve) for each issue number in situation where multiple issues were covered in the same commit & comma seperate each as well. Try resolve.
+Using github to plan sprints is challenging, some workarounds were needed such as creating US (user story) & EPIC templaites from Github Issues. There is no builtin notion of story points so I created custom labels ex 2Points, 4Points, 8Points. I used Project Milestones to determine sprint. As this was a one person project team velocity did not come into play. I tried as best where possible to automatically close/resolve US & EIPS's via commit message keywords. A learning process I found it necessary to use a keyword (either Fix, Close, Resolve) for each issue number in situation where multiple issues were covered in the same commit & comma seperate each as well. Try resolve.
 
 There are no builtin  story points so I created custom labels ex 2Points, 4Points, 8Points. I used Project Milestones to determine sprint. As this was a one person project team velocity did not come into play.
 
 ## User Experience Design (UXD)
+### Stategy
 
-As much as practical I followed the User Centered Design (UCD) process to ensure this app is intuitive and easy to use.
-
-### User Goals
-
-- Be able to enter a task
-- Be able to change status on their task 
-- View the groups list of tasks
-
-### Site Owner Goals
-
+As much as practical I followed the User Centered Design (UCD) process to ensure the app is intuitive and easy to use.
+#### Owner Goals
 - Provide an online solution for community groups to view list of tasks whether already done or to be completed
 - Create a visually appealing site
 - Provide a fully responsive application with straightforward navigation
 
+#### User Goals
+- Be able to enter a task
+- Be able to change status on their task 
+- View the groups list of tasks
 
-
-
-### Target Audience
+#### Target Audience
 - Community groups who want to be more organised with their tasks
 - Community groups who want to keep non members informed of work being done by the group
-- An online log of all tasks 
+- An online log of all tasks
 
-### User Requirements and Expectations
+#### User Requirements and Expectations
 
 - Straightforward navigation
 - Easy to use
 - A responsive application that allows the user to create a task on any device
 - Visually appealing design for any screen size
 - Links and functions that work as expected
+
+#### Scope / User Stories(#user-stories)
+
+### Structure
+#### Database
+
+### Skeleton
+#### Wireframes
+#### Pages
+
+### Surface Design
+#### Colours
+#### Fonts
 
 ##### Back to [top](#table-of-contents)
 
@@ -118,8 +125,20 @@ As much as practical I followed the User Centered Design (UCD) process to ensure
   - [Lighthouse](https://developers.google.com/web/tools/lighthouse/) for performance, accessibility, progressive web apps, SEO analysis of the project code
   - [Wave Validator](https://wave.webaim.org/) to evaluate accessibility
 
+## Features
 
-### Configuration
+## Validation
+
+## Testing
+### Manual testing of user stories
+### Automated testing
+### Performing tests on various devices
+### Browser compatibility
+
+## Bugs
+
+
+## Configuration
 
 To log into the Heroku toolbelt CLI:
 
@@ -133,7 +152,7 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 ##### Back to [top](#table-of-contents)
 
 
-### Credits
+## Credits
 
 [Sprint planning](https://codetree.com/guides/sprint-planning-github-issues) Using github to plan sprints is challenging, some aorkarounds were needed such as using 
 
