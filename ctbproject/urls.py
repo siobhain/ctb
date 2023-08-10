@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from taskapp.views import ctb_welcome
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path ('welcome/',ctb_welcome, name='welcome'),
     path('accounts/', include('allauth.urls')),
 ]
