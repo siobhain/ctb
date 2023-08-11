@@ -40,7 +40,11 @@ Ireland’s community, voluntary and charity sector makes a very substantial con
 This is a simple tool that can be used by groups in the CVC sector to aid in management and administration of tasks assigned to members of the group. 
 
 ### Agile Metodology
-Using github to plan sprints is challenging, some workarounds were needed such as creating US (user story) & EPIC templates from Github Issues. I started by using Project Milestones to determine sprint but found it somewhat lacking especially as I could not find a way to display milestone on soem kanban boards.  Sometime into the PP4 I created an iteration field to determine sprint.  I used 4 sprints of one week duration each.     
+Using github to plan sprints is challenging, some workarounds were needed such as creating US (user story) & EPIC templates from Github Issues. I started by using Project Milestones to determine sprint but found it somewhat lacking especially as I could not find a way to display milestone on some kanban boards.  Sometime into the PP4 I created an iteration field to determine sprint.  I used 4 sprints of one week duration each.  
+
+I used Issues templates for both Epics and User Stories with each individual instance automatically assigned an Issue number,  Hence the Epic number are not in chronological order as would normally be expected.
+
+
 
 As this was a one person project team velocity did not come into play. I tried as best where possible to automatically close/resolve US & EPIC's via commit message keywords. However when a commit message solved more than one issue/ user story I found that not all issues were automatically set to closed and moved to Done column and some had to be manually changed. Its a learning process & no doubt given time and experience with github I would come to an acceptable way of using for planning and tracking work.
 
@@ -141,11 +145,13 @@ As much as practical I followed the User Centered Design (UCD) process to ensure
 
 ## Gotchas
 
-### sqlite3
-As I am using only one db for both development & production I should have add db.sqlite3 to `.gitignore` prior to 1st deployment (Empty Deployment), I subsequently updated .gitignorev one
-
 ### 2 database  v's one
-I intended having 2 databases, the sqlite for development and pys for production but found that as my PP4 project scope changed it was better option considering the deadline that I just use the same database for both.
+I intended having 2 databases, the `sqlite` for development and `psycopg2` for production, & use environment variables coupled with `if/else` statements in `settings.py` to distinguish which db was to be used.  However, since there were a couple of false starts & with the deadline looming I decided it was a prudent option for me in this position to reduce to the one database & use the ElephantSQL instance for both development and production.  I realise this would not be acceptable in the real world.
+
+### sqlite3
+As I am using only one db for both development & production I should have added 'db.sqlite3' to `.gitignore` prior to 1st deployment (Empty Deployment), I subsequently updated `.gitignore`, adding `*.sqlite3` to the list (after the empty deployment).
+
+
 
 ## Configuration
 
