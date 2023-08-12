@@ -4,7 +4,6 @@ Ireland’s community, voluntary and charity sector makes a very substantial con
 
 ## Table of Contents
   - [About](#about)
-  - [Agile Methodology](#agile-methodology)
   - [User Experience Design](#user-experience-design)
     - [Stategy](#strategy)
         - [Owner Goals](#site-owner-goals)
@@ -146,12 +145,10 @@ As much as practical I followed the User Centered Design (UCD) process to ensure
 ## Gotchas
 
 ### 2 database  v's one
-I intended having 2 databases, the `sqlite` for development and `psycopg2` for production, & use environment variables coupled with `if/else` statements in `settings.py` to distinguish which db was to be used.  However, since there were a couple of false starts & with the deadline looming I decided it was a prudent option for me in this position to reduce to the one database & use the ElephantSQL instance for both development and production.  I realise this would not be acceptable in the real world.
+I intended having 2 databases, the default Django `SQLite` for development and a `Postgres` instance for production, & use environment variables coupled with `if/else` statements in `settings.py` to distinguish which db was to be used.  However, since there were a couple of false starts & with the deadline looming I decided it was a prudent option for me in this position to reduce to the one database & use an ElephantSQL Postgres instance for both development and production.  I realise this would not be acceptable in the real world as best pratice dictates development work would never be carried out on a production database.
 
-### sqlite3
+### sqlite3 files deployed on 1st deployment
 As I am using only one db for both development & production I should have added 'db.sqlite3' to `.gitignore` prior to 1st deployment (Empty Deployment), I subsequently updated `.gitignore`, adding `*.sqlite3` to the list (after the empty deployment).
-
-
 
 ## Configuration
 

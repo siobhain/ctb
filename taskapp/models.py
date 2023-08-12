@@ -18,13 +18,11 @@ class Task(models.Model):
     attached_image = CloudinaryField('image', default='placeholder')
     likes = models.ManyToManyField(User, related_name='task_likes', blank=True)
 
+    def __str__(self):
+        return self.description
 
 class Meta:
     ordering = ['-created_on']  # order by latest
-
-
-def __str__(self):
-    return self.description
 
 
 def number_of_likes(self):
