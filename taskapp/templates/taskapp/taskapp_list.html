@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=Shared, initial-scale=1.0">
-    <title>Document</title>
+    <title>CTB : Community Task Board</title>
 </head>
 <body>
-    <h1>Shared Task List (in taskapp_list.html template)</h1>
+    <h1>Our Shared List of Jobs (in taskapp_list.html template)</h1>
+    <h3> {{ tasks }}</h3>
+    <h4>Here are some of the jobs on our list, if you want to help 
+        sign up for an account or contact our administrator via SMS 
+        on 086 123 4567, Thank you
+    </h4> 
+    <table border="5">  
+        {% for task in tasks %}
+            <tr>
+                <td> {{ task }} </td>
+                <!-- {% if task.complete %}   -->
+                <td>{{ task.description }}</td>
+                <td>{{ task.created_by }}</td>
+                <td>{{ task.created_on }}</td>
+                <!-- {% endif %} -->
+            </tr>
+        {% endfor %}
+    </table>
+    <!-- <h4>All these jobs have been completed, Thank you for your support</h4> 
+    <table>
+        {% for task in tasks %}
+            <tr>
+                {% if task.complete %}
+                    <td>{{ item.description }}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table> -->
+
 </body>
 </html>

@@ -15,15 +15,15 @@ class Task(models.Model):
     modified_on = models.DateTimeField(auto_now=True)
     category = models.IntegerField(choices=WORKCATEGORY, default=0, blank=False, null=False)
     completed = models.BooleanField(default=False, blank=False, null=False)
+    status = models.IntegerField(choices=STATUS, default=0)
     attached_image = CloudinaryField('image', default='placeholder')
     likes = models.ManyToManyField(User, related_name='task_likes', blank=True)
 
     def __str__(self):
         return self.description
 
-class Meta:
-    ordering = ['-created_on']  # order by latest
+    class Meta:
+        ordering = ['-created_on']  # order by latest
 
-
-def number_of_likes(self):
-    return self.likes.count()
+    def number_of_likes(self):
+        return self.likes.count()
