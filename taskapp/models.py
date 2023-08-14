@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
-STATUS = ((0, "Suggest"), (1, "Approved"))
-WORKCATEGORY = ((0, "All"), (1, "Manual Work"), (2, "Admin Work"), (3, "Campaign Work"))
+STATUS = ((0, "New"), (1, "Publish"))
+WORKCATEGORY = ((1, "Manual Work"), (2, "Admin Work"), (3, "Campaign Work"), (4, "Other"))
 
 
 # Create your models here.

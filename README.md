@@ -142,6 +142,24 @@ As much as practical I followed the User Centered Design (UCD) process to ensure
 
 ## Bugs
 
+#### Delete User on_delete option
+I intended that if a use was deleted all associated tasks should be re-assigned to admin user but I could nto get it to work, I can try get_sentinal_user example from django doc but leaving for moment as trying to reach MVP
+
+Error image on C:\Users\User\OneDrive\CI\PP4\snips\delete-user-SET-failed
+
+ class Task(models.Model):
+    description = models.CharField(max_length=120, unique=True, null=False, blank=False)
+    slug = models.SlugField(max_length=120, unique=True)
+<code>    created_by = models.ForeignKey(User, on_delete=models.SET('admin'), related_name='tasks')</code>
+    created_on = models.DateTimeField(auto_now_add=True)
+    modified_on = models.DateTimeField(auto_now=True)   
+
+#### 'django.db.utils.DataError'
+ This error occurred during migration after I changed the max_length of slug field to less characters than the prepopulated field (ie 50 instead of 120) & despite correcting the max_length the smaller value of 50 persisted somewhere deep in the SQL & so I was unable to clear this error. I  found it necessary to go back about 4 migrations to be able to move forward. I learned a lot about migrations.  When time allows I would recreate this issue in a test environment & spend more time investigating the cause.
+ 
+<code> django.db.utils.DataError: value too long for type character varying(50)
+
+
 ## Gotchas
 
 ### 2 database  v's one
@@ -149,6 +167,11 @@ I intended having 2 databases, the default Django `SQLite` for development and a
 
 ### sqlite3 files deployed on 1st deployment
 As I am using only one db for both development & production I should have added 'db.sqlite3' to `.gitignore` prior to 1st deployment (Empty Deployment), I subsequently updated `.gitignore`, adding `*.sqlite3` to the list (after the empty deployment).
+
+
+
+ <code>    created_by = models.ForeignKey(User, on_delete=models.SET('admin'), related_name='tasks') </code> 
+ <code> slug max length 50 </code>
 
 ## Configuration
 
@@ -168,8 +191,8 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 
 [Sprint planning](https://codetree.com/guides/sprint-planning-github-issues) Using github to plan sprints is challenging, some aorkarounds were needed such as using 
 
-
-
+[Revert Django Migrations](https://awstip.com/a-guide-to-reverting-migrations-in-django-c091bef62d34) I refer to this article to undo changes to db schema when I was unable to correct a django DataError.  This occured whe I changed the max_length of slug field to less characters than the prepopulated field (ie 50 instead of 120) & despite correcting the length the old value persisted and I was unable to get rid of this error.
+<code> django.db.utils.DataError: value too long for type character varying(50)</code
 
 ##### Back to [top](#table-of-contents)
 
