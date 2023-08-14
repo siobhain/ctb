@@ -157,8 +157,18 @@ Error image on C:\Users\User\OneDrive\CI\PP4\snips\delete-user-SET-failed
 #### 'django.db.utils.DataError'
  This error occurred during migration after I changed the max_length of slug field to less characters than the prepopulated field (ie 50 instead of 120) & despite correcting the max_length the smaller value of 50 persisted somewhere deep in the SQL & so I was unable to clear this error. I  found it necessary to go back about 4 migrations to be able to move forward. I learned a lot about migrations.  When time allows I would recreate this issue in a test environment & spend more time investigating the cause.
  
-<code> django.db.utils.DataError: value too long for type character varying(50)
+<code> django.db.utils.DataError: value too long for type character varying(50)</code>
 
+#### Djanjo : Related Field got invalid lookup: icontains
+
+I got the above FieldError when testing the search bar of the taskapp Admin panel.  It was caused by fact that I had 'created_by' field included in the search fields :
+
+<code>search_fields = ['completed', 'description', 'status', 'created_by', 'category']</code>
+
+ This 'created_by' field has a Foreign Key and that is what is throwing this error. I removed the created_by field from the search fields and that clearerd the error.  It seems the way around this is to use double underscore on the FK for example
+<code>search_fields = ['created_by__User']</code>
+
+ but time did not allow me to test this out.
 
 ## Gotchas
 
@@ -189,10 +199,15 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 
 ## Credits
 
-[Sprint planning](https://codetree.com/guides/sprint-planning-github-issues) Using github to plan sprints is challenging, some aorkarounds were needed such as using 
+[Sprint planning](https://codetree.com/guides/sprint-planning-github-issues)
 
-[Revert Django Migrations](https://awstip.com/a-guide-to-reverting-migrations-in-django-c091bef62d34) I refer to this article to undo changes to db schema when I was unable to correct a django DataError.  This occured whe I changed the max_length of slug field to less characters than the prepopulated field (ie 50 instead of 120) & despite correcting the length the old value persisted and I was unable to get rid of this error.
-<code> django.db.utils.DataError: value too long for type character varying(50)</code
+[Revert Django Migrations](https://awstip.com/a-guide-to-reverting-migrations-in-django-c091bef62d34) 
+
+[Django FKey on_delete options](https://medium.com/@inem.patrick/django-database-integrity-foreignkey-on-delete-option-db7d160762e4)
+
+[Django Slug Tutorial](https://www.procoding.org/django-slug-tutorial-adding-slug-field-in-a-django-model/)
+
+[Django Search Field Error](https://bugshare.io/exceptions/15/field-error-related-field-got-invalid-lookup-icontains)
 
 ##### Back to [top](#table-of-contents)
 

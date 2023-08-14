@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
-STATUS = ((0, "New"), (1, "Publish"))
+STATUS = ((0, "Draft"), (1, "Live"))
 WORKCATEGORY = ((1, "Manual Work"), (2, "Admin Work"), (3, "Campaign Work"), (4, "Other"))
 
 
@@ -23,7 +23,7 @@ class Task(models.Model):
         return self.description
 
     class Meta:
-        ordering = ['-created_on']  # order by latest
+        ordering = ['-created_on']  # order by latest (minus)
 
     def number_of_likes(self):
         return self.likes.count()
