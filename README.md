@@ -39,11 +39,12 @@ Ireland’s community, voluntary and charity sector makes a very substantial con
 This is a simple tool that can be used by groups in the CVC sector to aid in management and administration of tasks assigned to members of the group. 
 
 ### Agile Metodology
-Using github to plan sprints is challenging, some workarounds were needed such as creating US (user story) & EPIC templates from Github Issues. I started by using Project Milestones to determine sprint but found it somewhat lacking especially as I could not find a way to display milestone on some kanban boards.  Sometime into the PP4 I created an iteration field to determine sprint.  I used 4 sprints of one week duration each.  
+
+You can find [my GitHub Project here called '@siobhain's CTB project'](https://github.com/users/siobhain/projects/9)
+
+Using github to plan sprints is challenging, some workarounds were needed such as creating US (user story) & EPIC templates from Github Issues. I started by using Project Milestones to determine sprint but found it somewhat lacking especially as I could not find a way to display milestone on kanban boards.  Sometime into the PP4 I created an iteration field to determine sprint.  I used 4 sprints of one week duration each.  Hence to anyone but myself the "Sprints" look very confusing having both milestone & iteration determining Sprints.  In future I would just use Iterations but I had started with Milestones & well you learn as you go so I was able to use both in a kind of a "In Theory" (Iterations) & "In Reality" (Milestones) that probably only has meaning to myself.  Also during the PP4 I did find a way to display milestones in issues on the kanban so it was useful to me but perhaps not to the casual observer. It may help the reader to know that the Milestone sprint are named as First Sprint, 2nd Sprint, 3rd Sprint... & the Iteration sprints are labelled Sprint 1, Sprint 2 etc.  Of coarse I could tidied it up and have removed the milestones but wanted to show the learning process.
 
 I used Issues templates for both Epics and User Stories with each individual instance automatically assigned an Issue number,  Hence the Epic number are not in chronological order as would normally be expected.
-
-
 
 As this was a one person project team velocity did not come into play. I tried as best where possible to automatically close/resolve US & EPIC's via commit message keywords. However when a commit message solved more than one issue/ user story I found that not all issues were automatically set to closed and moved to Done column and some had to be manually changed. Its a learning process & no doubt given time and experience with github I would come to an acceptable way of using for planning and tracking work.
 
