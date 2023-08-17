@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ctbapp-67038c5a6f0e.herokuapp.com', '8000-siobhain-ctb-ii4y9sbki1o.ws-eu103.gitpod.io']
+ALLOWED_HOSTS = ['ctbapp-67038c5a6f0e.herokuapp.com', '8000-siobhain-ctb-ii4y9sbki1o.ws-eu104.gitpod.io']
 
 # Application definition
 
@@ -52,7 +52,10 @@ INSTALLED_APPS = [
 
 # sob AllAuth library config
 # sob Turn off email verification for user registration and login
+# sob Remove Remember me checkbox on login form
+
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_SESSION_REMEMBER = 'False'
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
