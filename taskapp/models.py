@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Live"))
@@ -8,14 +11,28 @@ WORKCATEGORY = ((1, "Manual Work"), (2, "Admin Work"), (3, "Campaign Work"), (4,
 ROI = (('087', '087'), ('086', '086'), ('085', '085'), ('083', '083'))
 
 class Profile(models.Model):
+    # A user profile model to hold firstname, surname, mobile
+    # & a default gate code which in future version will be
+    # # supplied by a security system via API
+    
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # firstname = models.CharField(max_length=15, validators=[MinLengthValidator(2)])
-    # surname = models.CharField(max_length=15, validators=[MinLengthValidator(2)])
     firstname = models.CharField(max_length=15)
     surname = models.CharField(max_length=15)
     mobile_prefix = models.CharField(choices=ROI, max_length=3)
     mobile_number = models.CharField(max_length=7, default='1234567', validators=[RegexValidator(regex='^\d{7}$', message='7 digits please')])
     gate_code = models.CharField(max_length=4, default='1234')
+
+    def __str__(self):
+        return self.user
+    
+    @receiver(post_save, sender=User)
+    def create_or_update_user_profile(sender, instance, created, **kwargs):
+        # Adapted from Boutique Ado
+        # Create or update the user profile
+        if created:
+            Profile.objects.create(user=instance)
+        # Existing users: just save the profile
+            instance.profile.save()
 
 
 class Task(models.Model):

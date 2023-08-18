@@ -82,6 +82,9 @@ As much as practical I followed the User Centered Design (UCD) process to ensure
 ### Structure
 #### Database
 
+   # firstname = models.CharField(max_length=15, validators=[MinLengthValidator(2)])
+    # surname = models.CharField(max_length=15, validators=[MinLengthValidator(2)])
+
 ### Skeleton
 #### Wireframes
 #### Pages

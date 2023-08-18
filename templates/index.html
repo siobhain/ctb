@@ -8,7 +8,7 @@
             <h1>Our Shared Todo List</h1>
         <!-- </div> -->
         <h6>Here are the most recent jobs on our list, if you want to help 
-            sign up for an account or contact our administrator via SMS 
+            sign up as a member or contact our administrator via SMS 
             on 086 123 4567, Thank you
         </h6> 
         </div>
@@ -25,23 +25,10 @@
                     <td> {{ task.created_on|date:"d M" }} </td>
                     <td> {{ task.get_category_display }} </td>
                     <td> {{ task }} </td>
-                    <!-- {% if task.complete %}   -->
-                    <!-- <td>{{ task.description }}</td>
-                    <td>{{ task.created_by }}</td>
-                    <td>{{ task.created_on }}</td> -->
-                    <!-- {% endif %} -->
                 </tr>
             {% endfor %}
         </table>
-
-        <!-- Blog Entries Column -->
-        <!-- <div class="col-12 mt-3 left">
-            <div class="row">
-
-            </div>
-        </div> -->
     </div>
-
 </div>
 
 {%endblock%}

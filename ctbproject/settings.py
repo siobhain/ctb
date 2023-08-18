@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'cloudinary',
+    'crispy_forms',
     'taskapp',
 ]
 
@@ -60,11 +61,13 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 # sob For forever-cacheable files and compression support
 # sob This combines automatic compression with the caching behaviour
 # provided by Django’s ManifestStaticFilesStorage backend
-# actually Matt says un the masterclass to comment this out
+# actually Matt says in the masterclass to comment this out
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedMani...."
 
 
