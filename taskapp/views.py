@@ -26,14 +26,20 @@ def create_task(request):
 #     }
 #     return render(request, 'taskapp/taskapp_list.html', context)
 
+# CompletedTaskList : A class based view that inherits from ListView
+# Used to display a list of Task objects that are completed (True)
+# this view is rendered by the completedtasklist.html template
 
 class CompletedTaskList(generic.ListView):
     model = Task
     queryset = Task.objects.filter(completed=True).order_by('-created_on')
     template_name = 'index.html'
 
+# TodoTaskList : A class based view that inherits from ListView
+# Used to display a list of Task objects that are not completed (False)
+# this view is rendered by the todotasklist.html template
 
 class TodoTaskList(generic.ListView):
     model = Task
     queryset = Task.objects.filter(completed=False).order_by('-created_on')
-    template_name = 'taskapp/taskapp_list.html'
+    template_name = 'taskapp/todotasklist.html'
