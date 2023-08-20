@@ -2,53 +2,80 @@
 
 Ireland’s community, voluntary and charity sector makes a very substantial contribution to society in general, There are almost 10,000 registered charities and a further 20,000+ organisations in Ireland’s wider nonprofit sector. This app is a simple tool that can be used by groups in this sector to aid in management and administration of tasks assigned to members of the group.
 
-## Table of Contents
-  - [About](#about)
-  - [User Experience Design](#user-experience-design)
-    - [Stategy](#strategy)
-        - [Owner Goals](#site-owner-goals)
-        - [User Goals](#user-goals)
-        - [Target Audience](#target-audience)
-    - [Scope / User Stories](#user-stories)
-    - [Structure](#structure)
-      - [Database](#database)
-    - [Skeleton](#skeleton)
-      - [Wireframes](#wireframes)
-      - [Website pages](#website-pages)
-    - [Surface Design](#design)
-        - [Colours](#colours)
-        - [Fonts](#fonts)
-  - [Technologies Used](#technologies-used)
-  - [Features](#features)
-  - [Validation](#validation)
-  - [Testing](#testing)
-    - [Manual testing of user stories](#manual-testing-of-user-stories)
-    - [Automated testing](#automated-testing)
-    - [Performing tests on various devices](#performing-tests-on-various-devices)
-    - [Browser compatibility](#browser-compatibility)
-  - [Bugs](#bugs)
-  - [Configuration](#configuration)
-    - [Google emails](#google-emails)
-    - [Forking the GitHub Repository](#forking-the-github-repository)
-    - [Making a Local Clone](#making-a-local-clone)
-  - [Credits](#credits)
-  - [Acknowledgements](#acknowledgements)
+<!-- TOC -->
 
-### About
+[Table of Contents](#table-of-contents)
+- [About](#about)
+- [Agile Metodology](#agile-metodology)
+  - [Sprints](#sprints)
+  - [US & EPICS](#us--epics)
+   - [Velocity & Story Points](#velocity--story-points)
+- [User Experience Design UXD](#user-experience-design-uxd)
+  - [Stategy](#stategy)
+    - [Owner Goals](#owner-goals)
+    - [User Goals](#user-goals)
+    - [Target Audience](#target-audience)
+    - [User Requirements and Expectations](#user-requirements-and-expectations)
+  - [Scope / User Stories#user-stories](#scope--user-storiesuser-stories)
+  - [Structure](#structure)
+    - [Database](#database)
+  - [Skeleton](#skeleton)
+    - [Wireframes](#wireframes)
+    - [Pages](#pages)
+  - [Surface Design](#surface-design)
+    - [Colours](#colours)
+    - [Fonts](#fonts)
+- [Back to top](#back-to-top)
+- [Technologies Used](#technologies-used)
+    - [Languages & Frameworks](#languages--frameworks)
+    - [Libraries & Tools](#libraries--tools)
+- [Features](#features)
+- [Validation](#validation)
+- [Testing](#testing)
+  - [Manual testing of user stories](#manual-testing-of-user-stories)
+        - [Automated testing](#automated-testing)
+        - [Performing tests on various devices](#performing-tests-on-various-devices)
+        - [Browser compatibility](#browser-compatibility)
+    - [Bugs](#bugs)
+            - [Delete User on_delete option](#delete-user-on_delete-option)
+            - ['django.db.utils.DataError'](#djangodbutilsdataerror)
+            - [Djanjo : Related Field got invalid lookup: icontains](#djanjo--related-field-got-invalid-lookup-icontains)
+        - [User & Profile View this BUG which has been tracked in Siobhans CTB Project](#user--profile-view-this-bug-which-has-been-tracked-in-siobhans-ctb-project)
+    - [Gotchas](#gotchas)
+        - [database  v's one](#database--vs-one)
+        - [sqlite3 deployed on 1st deployment](#sqlite3-deployed-on-1st-deployment)
+    - [Configuration](#configuration)
+                - [Back to top](#back-to-top)
+    - [Credits](#credits)
+                - [Back to top](#back-to-top)
+
+<!-- /TOC -->
+
+## About
 
 This is a simple tool that can be used by groups in the CVC sector to aid in management and administration of tasks assigned to members of the group. 
 
-### Agile Metodology
+## Agile Metodology
 
-You can find [my GitHub Project here called '@siobhain's CTB project'](https://github.com/users/siobhain/projects/9)
+Find my GitHub Project called  `@siobhain's CTB project`  [here](https://github.com/users/siobhain/projects/9)
 
-Using github to plan sprints is challenging, some workarounds were needed such as creating US (user story) & EPIC templates from Github Issues. I started by using Project Milestones to determine sprint but found it somewhat lacking especially as I could not find a way to display milestone on kanban boards.  Sometime into the PP4 I created an iteration field to determine sprint.  I used 4 sprints of one week duration each.  Hence to anyone but myself the "Sprints" look very confusing having both milestone & iteration determining Sprints.  In future I would just use Iterations but I had started with Milestones & well you learn as you go so I was able to use both in a kind of a "In Theory" (Iterations) & "In Reality" (Milestones) that probably only has meaning to myself.  Also during the PP4 I did find a way to display milestones in issues on the kanban so it was useful to me but perhaps not to the casual observer. It may help the reader to know that the Milestone sprint are named as First Sprint, 2nd Sprint, 3rd Sprint... & the Iteration sprints are labelled Sprint 1, Sprint 2 etc.  Of coarse I could tidied it up and have removed the milestones but wanted to show the learning process.
+Initally I found using GitHub to create user stories, plan sprints etc challenging, workarounds were needed such as creating US (user story) & EPIC templates from Github Issues. It seemed more trouble that it was worth for a one person project.  I believed in the Agile methodology but trying to mould GitHub to convey adopting this methodology for PP4 was frustrating.  In addition while the Agile methodology sounds good in theory & I so wanted to adhere to it, having the discipline to follow it under a deadline challenged me on manys the occasion. As PP4 progressed, my attempts with using GitHub Project improved -  as with anything the more you play around with it the better you understand! Below I describe my PP4 journey & adapting GitHub to track progress in what I hope is an Agile manner.
 
-I used Issues templates for both Epics and User Stories with each individual instance automatically assigned an Issue number,  Hence the Epic number are not in chronological order as would normally be expected.
+### Sprints
+I started by using Project Milestones to determine sprint but found it somewhat lacking especially as I could not find a way to display milestone on kanban boards.  Sometime into the PP4, during time of 2nd Sprint, I created an iteration field to determine sprint.  I setup 4 sprints of one week duration each.  Hence to anyone but myself the [Roadmap View](https://github.com/users/siobhain/projects/9/views/10) must look very confusing having both milestone & iteration determining Sprints.  In future I would just use Iterations but I had started with Milestones & well you learn as you go so I was able to use both in a kind of a "In Theory" (Iterations) & "In Reality" (Milestones) that probably only has meaning to myself.  Also during the PP4 I did find a way to display milestones in the US on the Kanban so it was useful to me but perhaps not to the casual observer. It may help the reader to know that the Milestone sprints are named as First Sprint, 2nd Sprint, 3rd Sprint... & the Iteration sprints are labelled Sprint 1, Sprint 2, Sprint 3 etc.  Of coarse I could have tidied it up and removed the milestones but wanted to show the learning process.
 
-As this was a one person project team velocity did not come into play. I tried as best where possible to automatically close/resolve US & EPIC's via commit message keywords. However when a commit message solved more than one issue/ user story I found that not all issues were automatically set to closed and moved to Done column and some had to be manually changed. Its a learning process & no doubt given time and experience with github I would come to an acceptable way of using for planning and tracking work.
+### <u>Milestone Sprints screenshot at 3rd Sprint</u>
 
-There are no built in  story points so I created custom labels ex 2Points, 4Points, 8Points. I used Project Milestones to determine sprint. As this was a one person project team velocity did not come into play.
+![Milestone Sprints screenshot at 3rd Sprint](https://user-images.githubusercontent.com/44432977/261867099-c6ee0f81-de80-4585-b710-4495cf7d6cd7.JPG)
+
+### US & EPICS
+I created Issue templates for both Epics and User Stories (title prefixed with US) with each individual instance automatically assigned an Issue number,  hence Epic numbers are not in chronological order as would normally be expected.  I tried as best & where possible to automatically close/resolve US's & EPIC's via commit message keywords. However when a commit message solved more than one US I found that not all issues were automatically set to closed and moved to the Done column and some had to be manually changed. Its a learning process & no doubt given time and experience with GitHub I will come to an acceptable & consisent way of using it for planning and tracking work. Each US was given a labed according to Mo
+
+### Velocity & Story Points
+As this was a one person project team velocity did not come into play. There are no built in story points so I tried my best,  when &where possible to give story points to US in the form of these color coded size options : X-Large, Large, Medium, Small, Tiny
+
+-  ![size options](https://user-images.githubusercontent.com/44432977/261864807-1118bb34-3d1d-47f6-8fd4-eb4f89f03ded.png)
+
 
 ## User Experience Design (UXD)
 ### Stategy
@@ -174,6 +201,13 @@ I got the above FieldError when testing the search bar of the taskapp Admin pane
 
  but time did not allow me to test this out.
 
+ ### User & Profile [View this BUG which has been tracked in Siobhans CTB Project](https://github.com/siobhain/ctb/issues/20)
+It took me a long time to get both User & Profile models to work together, I messed up the db when using a customform for the signup, In the heel of the hunt it was that I had save functions for Profile in both the formerly and model so was getting error 'user_id already exists'. Simply removing the save in the model solved the problem but it took me over 36 hours and thoughts of giving up on the Profile altogether to get to that stage. In hindsight I don't know why I did not cop this earlier, I went down rabbit hole after hole with database inconsistency, redoing models and finally retired, resigned to fact that I'd need to start afresh & use only default user model.  The penny droppped the following day after a few hours kip & on reading [stackoverflow](https://stackoverflow.com/questions/50929110/django-cannot-assign-profile-profile-objinect-none-profile-user-must-be) & the problem was solved in a few minutes. I know this pheomena is common and its not the 1st & probably not the last time it will happen to be but just wanted to log it here as it ate much precious time at crucial stage meaning styling of my frontend will have to be completed in a hurry.  Its probably a skill that comes with experience to know best when to give up & start afresh or keep trying to solve the issue - beating the dead horse senario.
+
+![Sample Duplicate Key Error screenshot](https://user-images.githubusercontent.com/44432977/261859495-f8b76c56-e233-4a92-bbac-5f31c6c0abda.JPG)
+
+![Sample integrity error Screenshot](https://user-images.githubusercontent.com/44432977/261859546-c6e47665-32a0-4f5d-891a-6f4f68b9ce70.JPG)
+
 ## Gotchas
 
 ### 2 database  v's one
@@ -186,9 +220,6 @@ Since I am using only one db for both development & production I should have add
 
  <code>    created_by = models.ForeignKey(User, on_delete=models.SET('admin'), related_name='tasks') </code> 
  <code> slug max length 50 </code>
-
- ### User & Profile
- I was unsucessful in getting this to work, i messed up the db when using a customform for the signup, i was trying to save to b
 
 ## Configuration
 

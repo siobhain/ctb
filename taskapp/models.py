@@ -15,7 +15,7 @@ class Profile(models.Model):
     # & a default gate code which in future version will be
     # set by a security system via API
     
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     firstname = models.CharField(max_length=15)
     surname = models.CharField(max_length=15)
     mobile_prefix = models.CharField(choices=ROI, max_length=3)
@@ -29,12 +29,12 @@ class Profile(models.Model):
     # A signal handler function that creates/updates Profile instance whenever
     # there is a save (new or update) on a User instance
 
-    @receiver(post_save, sender=User)
-    def create_or_update_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-        # Existing users: just save the profile
-        instance.profile.save()
+    # @receiver(post_save, sender=User)
+    # def create_or_update_user_profile(sender, instance, created, **kwargs):
+    #     if created:
+    #         Profile.objects.create(user=instance)
+    #     # Existing users: just save the profile
+    #     instance.profile.save()
 
 
 class Task(models.Model):
