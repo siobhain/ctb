@@ -52,11 +52,16 @@ INSTALLED_APPS = [
 ]
 
 # sob AllAuth library config
-# sob Turn off email verification for user registration and login
+# sob Turn off email & verification for user registration and login
 # sob Remove Remember me checkbox on login form
+# sob Use CustomSignupForm rather than allauth's default one
 
+ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_SESSION_REMEMBER = 'False'
+ACCOUNT_FORMS = {
+    'signup': 'taskapp.forms.CustomSignupForm',
+}
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'

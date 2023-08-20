@@ -177,15 +177,18 @@ I got the above FieldError when testing the search bar of the taskapp Admin pane
 ## Gotchas
 
 ### 2 database  v's one
-I intended having 2 databases, the default Django `SQLite` for development and a `Postgres` instance for production, & use environment variables coupled with `if/else` statements in `settings.py` to distinguish which db was to be used.  However, since there were a couple of false starts & with the deadline looming I decided it was a prudent option for me in this position to reduce to the one database & use an ElephantSQL Postgres instance for both development and production.  I realise this would not be acceptable in the real world as best pratice dictates development work would never be carried out on a production database.
+I intended having 2 databases, the default Django `SQLite` for development and a `Postgres` instance for production, & use environment variables coupled with `if/else` statements in `settings.py` to distinguish which db was to be used.  However, since there were a couple of false starts & with the deadline looming I decided it was a prudent option for me in this position to reduce to the one database & use an ElephantSQL Postgres instance for both development and production.  I realise this would not be acceptable in the real db. as best pratice dictates development work would never be carried out on a production database.
 
-### sqlite3 files deployed on 1st deployment
-As I am using only one db for both development & production I should have added 'db.sqlite3' to `.gitignore` prior to 1st deployment (Empty Deployment), I subsequently updated `.gitignore`, adding `*.sqlite3` to the list (after the empty deployment).
+### sqlite3 deployed on 1st deployment
+Since I am using only one db for both development & production I should have added `db.sqlite3` to `.gitignore` prior to 1st gitpod commit (labelled "Empty Deployment"). I subsequently updated `.gitignore`, adding `*.sqlite3` to the list (after the empty deployment commit), thinking `sqlite` would be removed from repository after the next commit but it was persisent. As I learn more about the git process it seems I need to run `git rm`` to remove  'db.sqlite3'.  This is one case of "NINTH" that I will eventually get round to but perhaps not before final submission. I'm still learning about git and its power and don't want to loose the HEAD or mess up with deadline looming.
 
 
 
  <code>    created_by = models.ForeignKey(User, on_delete=models.SET('admin'), related_name='tasks') </code> 
  <code> slug max length 50 </code>
+
+ ### User & Profile
+ I was unsucessful in getting this to work, i messed up the db when using a customform for the signup, i was trying to save to b
 
 ## Configuration
 
@@ -212,6 +215,8 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 [Django Slug Tutorial](https://www.procoding.org/django-slug-tutorial-adding-slug-field-in-a-django-model/)
 
 [Django Search Field Error](https://bugshare.io/exceptions/15/field-error-related-field-got-invalid-lookup-icontains)
+
+[Custom Signup Form](https://stackoverflow.com/questions/70809519/how-do-i-customize-django-allauth-sign-up-forms-to-look-the-way-i-want)
 
 ##### Back to [top](#table-of-contents)
 

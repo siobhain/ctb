@@ -3,17 +3,16 @@ from .models import Profile, Task
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('firstname', 'surname', 'user')
+    list_display = ('firstname', 'surname', 'gate_code', 'mobile_prefix', 'mobile_number', 'user')
     list_filter = ('user', 'firstname', 'surname')
     search_fields = ['firstname', 'surname', 'user']
-    actions = ['change_gate_code', 'new mobile']
+    actions = ['change_gate_code', 'new_mobile']
 
     def change_gate_code(self, request, queryset):
         queryset.update(gate_code='2345')
 
     def new_mobile(self, request, queryset):
-        queryset.update(mobile_number='1234567')    
-
+        queryset.update(mobile_prefix='083', mobile_number='0830831')
 
 
 @admin.register(Task)
