@@ -4,35 +4,36 @@ Ireland’s community, voluntary and charity sector makes a very substantial con
 
 <!-- TOC -->
 
-[Table of Contents](#table-of-contents)
-- [About](#about)
-- [Agile Metodology](#agile-metodology)
-  - [Sprints](#sprints)
-  - [US & EPICS](#us--epics)
-   - [Velocity & Story Points](#velocity--story-points)
-- [User Experience Design UXD](#user-experience-design-uxd)
-  - [Stategy](#stategy)
-    - [Owner Goals](#owner-goals)
-    - [User Goals](#user-goals)
-    - [Target Audience](#target-audience)
-    - [User Requirements and Expectations](#user-requirements-and-expectations)
-  - [Scope / User Stories#user-stories](#scope--user-storiesuser-stories)
-  - [Structure](#structure)
-    - [Database](#database)
-  - [Skeleton](#skeleton)
-    - [Wireframes](#wireframes)
-    - [Pages](#pages)
-  - [Surface Design](#surface-design)
-    - [Colours](#colours)
-    - [Fonts](#fonts)
-- [Back to top](#back-to-top)
-- [Technologies Used](#technologies-used)
-    - [Languages & Frameworks](#languages--frameworks)
-    - [Libraries & Tools](#libraries--tools)
-- [Features](#features)
-- [Validation](#validation)
-- [Testing](#testing)
-  - [Manual testing of user stories](#manual-testing-of-user-stories)
+    - [About](#about)
+    - [Agile Metodology](#agile-metodology)
+        - [Sprints](#sprints)
+        - [<u>Milestone Sprints screenshot at 3rd Sprint</u>](#umilestone-sprints-screenshot-at-3rd-sprintu)
+        - [US & EPICS](#us--epics)
+        - [Velocity & Story Points](#velocity--story-points)
+    - [User Experience Design UXD](#user-experience-design-uxd)
+        - [Stategy](#stategy)
+            - [Owner Goals](#owner-goals)
+            - [User Goals](#user-goals)
+            - [Target Audience](#target-audience)
+            - [User Requirements and Expectations](#user-requirements-and-expectations)
+            - [Scope / User Stories#user-stories](#scope--user-storiesuser-stories)
+        - [Structure](#structure)
+            - [Database](#database)
+- [firstname = models.CharFieldmax_length=15, validators=[MinLengthValidator2]](#firstname--modelscharfieldmax_length15-validatorsminlengthvalidator2)
+        - [Skeleton](#skeleton)
+            - [Wireframes](#wireframes)
+            - [Pages](#pages)
+        - [Surface Design](#surface-design)
+            - [Colours](#colours)
+            - [Fonts](#fonts)
+                - [Back to top](#back-to-top)
+    - [Technologies Used](#technologies-used)
+        - [Languages & Frameworks](#languages--frameworks)
+        - [Libraries & Tools](#libraries--tools)
+    - [Features](#features)
+    - [Validation](#validation)
+    - [Testing](#testing)
+        - [Manual testing of user stories](#manual-testing-of-user-stories)
         - [Automated testing](#automated-testing)
         - [Performing tests on various devices](#performing-tests-on-various-devices)
         - [Browser compatibility](#browser-compatibility)
@@ -41,9 +42,12 @@ Ireland’s community, voluntary and charity sector makes a very substantial con
             - ['django.db.utils.DataError'](#djangodbutilsdataerror)
             - [Djanjo : Related Field got invalid lookup: icontains](#djanjo--related-field-got-invalid-lookup-icontains)
         - [User & Profile View this BUG which has been tracked in Siobhans CTB Project](#user--profile-view-this-bug-which-has-been-tracked-in-siobhans-ctb-project)
+        - [Email](#email)
     - [Gotchas](#gotchas)
-        - [database  v's one](#database--vs-one)
-        - [sqlite3 deployed on 1st deployment](#sqlite3-deployed-on-1st-deployment)
+        - [Two Database v's one](#two-database-vs-one)
+        - [sqlite3 deployed on 1st/Empty Deployment](#sqlite3-deployed-on-1stempty-deployment)
+        - [Move Task.created_by to admin if user instance is deleted](#move-taskcreated_by-to-admin-if-user-instance-is-deleted)
+        - [Removing Change Email option for authenticated user](#removing-change-email-option-for-authenticated-user)
     - [Configuration](#configuration)
                 - [Back to top](#back-to-top)
     - [Credits](#credits)
@@ -138,21 +142,23 @@ As much as practical I followed the User Centered Design (UCD) process to ensure
 - [Am I Responsive](http://ami.responsivedesign.is/) was used to create the multi-device mock-ups
 - [Balsamiq](https://balsamiq.com/) to create the projects wireframes
 - [Bootstrap v5.1.3](https://getbootstrap.com/). This project uses the Bootstrap library for UI components (Buttons, Card, Footer, Modal, Pagination, Navbar)
-- [Canva](https://www.canva.com/) was used to create a background image
 - [Cloudinary](https://cloudinary.com/) to store static files
 - [Dbdiagram.io](https://dbdiagram.io/home) used for the database schema diagram
 - [Favicon.io](https://favicon.io) for making the site favicon
 - [Chrome dev tools](https://developers.google.com/web/tools/chrome-devtools/) was used for debugging of the code and checking site for responsiveness
 - [Font Awesome](https://fontawesome.com/) - Icons from Font Awesome were used throughout the site
-- [Git](https://git-scm.com/) was used for version control within VSCode to push the code to GitHub
-- [GitHub](https://github.com/) was used as a remote repository to store project code
+
+- [Git](https://git-scm.com/) for version control in GitPod to push the code to GitHub
+- [GitHub](https://github.com/) a remote repository to store project code
+- [GitHub Projects](https://github.com/users/siobhain/projects/9) To track & manage the PP4 in Agile manner
+
+
 - [Google Fonts](https://fonts.google.com/)
-- [Render Platform](https://render.com) was used to deploy the project into live environment
 - [jQuery](https://jquery.com) was used for drop-down exercises filters on smaller screens
 - [Postgres](https://www.postgresql.org/) – deployed project on Render uses a Postgres database
 - [Remove.bg](https://www.remove.bg/) was used to remove background on home page images & 404 page image
 - [Summernote](https://summernote.org/) - editor used for exercise description field in Admin page
-- [Visual Studio Code (VSCode)](https://code.visualstudio.com/) - code editor used to write this project
+
 - Validation:
   - [WC3 Validator](https://validator.w3.org/) was used to validate the html in the project
   - [Jigsaw W3 Validator](https://jigsaw.w3.org/css-validator/) to validate the css in the project
@@ -208,18 +214,48 @@ It took me a long time to get both User & Profile models to work together, I mes
 
 ![Sample integrity error Screenshot](https://user-images.githubusercontent.com/44432977/261859546-c6e47665-32a0-4f5d-891a-6f4f68b9ce70.JPG)
 
+### Email
+Not brave enough to pop email field in the save method so late in the PP4 road - in order to get rid of Email field on signup form. Sorry.
+
 ## Gotchas
 
-### 2 database  v's one
-I intended having 2 databases, the default Django `SQLite` for development and a `Postgres` instance for production, & use environment variables coupled with `if/else` statements in `settings.py` to distinguish which db was to be used.  However, since there were a couple of false starts & with the deadline looming I decided it was a prudent option for me in this position to reduce to the one database & use an ElephantSQL Postgres instance for both development and production.  I realise this would not be acceptable in the real db. as best pratice dictates development work would never be carried out on a production database.
+### Two Database v's one
+I intended having 2 databases, the default Django `SQLite` for development and a `Postgres` instance for production, & use environment variables coupled with `if/else` statements in `settings.py` to distinguish which db was to be used.  However, since there were a couple of false starts & with the deadline looming I decided it was a prudent option to reduce to the one database & use an ElephantSQL Postgres instance for both development and production.  I realise this would not be acceptable in the real world as best practise dictates development work would never be carried out on a production database.
 
-### sqlite3 deployed on 1st deployment
+### sqlite3 deployed on 1st/Empty Deployment
 Since I am using only one db for both development & production I should have added `db.sqlite3` to `.gitignore` prior to 1st gitpod commit (labelled "Empty Deployment"). I subsequently updated `.gitignore`, adding `*.sqlite3` to the list (after the empty deployment commit), thinking `sqlite` would be removed from repository after the next commit but it was persisent. As I learn more about the git process it seems I need to run `git rm`` to remove  'db.sqlite3'.  This is one case of "NINTH" that I will eventually get round to but perhaps not before final submission. I'm still learning about git and its power and don't want to loose the HEAD or mess up with deadline looming.
 
+### Move Task.created_by to admin if user instance is deleted
+If/When a user/member is deleted I wanted to retain the Tasks (if any) that particular user had created, I expected the following line of code to achieve this on the Task model :
 
+    created_by = models.ForeignKey(User, on_delete=models.SET('admin'), related_name='tasks')
 
- <code>    created_by = models.ForeignKey(User, on_delete=models.SET('admin'), related_name='tasks') </code> 
- <code> slug max length 50 </code>
+ However I was not able to get it to work & due to deadline pressure had to revert to `on_delete=models.CASCADE` for MVP.
+
+ ### Removing Change Email option for authenticated user
+ 
+ My user model does not require email address so I tried to remove all Email references from the standard and allauth templates. According to Djamgo & allauth documentation the following 2 lines in `settings.py` should suffice :
+ 
+    ACCOUNT_EMAIL_REQUIRED = False
+    ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+However I did find some email references were still hanging around for example this `Change Email` option was appearing once a user was logged in...hmmm bit of a mystery
+
+![Change Email Example](https://user-images.githubusercontent.com/44432977/261888729-e5efe131-5080-4e47-907a-d19b1c7acb8f.JPG)
+
+So on further testing/digging I found user could get into screens like this - despite me thinking email was turned off in `settings.py`
+
+![AddEmailAddress](https://github.com/siobhain/ctb/assets/44432977/39de7f69-ad5e-41c0-b4c6-bd763bac555a)
+
+ eventually I found the offending line in a templates
+  I had copied to customise & of coarse should have removed this line
+
+    <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
+
+& once deleted solved the issue!.  However that was AFTER I went down the rabbit hole of solving why I'd be getting these Connecion Refused type errors which I knew were occuring because I had turned off email in `settings.py` BUT WHY was user being offered these options in 1st place?? Lesson learnt - There is almost always an explanation!! 
+ 
+![ChangeEmailError-ConnectionRefused](https://github.com/siobhain/ctb/assets/44432977/d7022284-8be0-482d-8565-e26bbc8f9ae6)
+
 
 ## Configuration
 

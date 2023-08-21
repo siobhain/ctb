@@ -8,7 +8,7 @@ from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Live"))
 WORKCATEGORY = ((1, "Manual Work"), (2, "Admin Work"), (3, "Campaign Work"), (4, "Other"))
-ROI = (('087', '087'), ('086', '086'), ('085', '085'), ('083', '083'))
+ROI = (('083', '083'), ('085', '085'), ('086', '086'), ('087', '087'))
 
 class Profile(models.Model):
     # A user profile model to hold firstname, surname, mobile
@@ -16,25 +16,25 @@ class Profile(models.Model):
     # set by a security system via API
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    firstname = models.CharField(max_length=15)
-    surname = models.CharField(max_length=15)
-    mobile_prefix = models.CharField(choices=ROI, max_length=3)
-    mobile_number = models.CharField(max_length=7, default='1234567', validators=[RegexValidator(regex='^\d{7}$', message='7 digits please')])
+    firstname = models.CharField(max_length=15, null=False, blank=False)
+    surname = models.CharField(max_length=15, null=False, blank=False)
+    mobile_prefix = models.CharField(
+        choices=ROI, max_length=3, default='---', null=False, blank=False)
+    mobile_number = models.CharField(
+        max_length=7,
+        null=False,
+        blank=False,
+        validators=[
+            RegexValidator(
+                regex='^\d{7}$',
+                message='Mobile needs 7 digits please'
+            )
+        ]
+    )
     gate_code = models.CharField(max_length=4, default='1234')
 
     def __str__(self):
         return self.user.username
-
-    # Adapted from CI Boutique Ado : create_or_update_user_profile
-    # A signal handler function that creates/updates Profile instance whenever
-    # there is a save (new or update) on a User instance
-
-    # @receiver(post_save, sender=User)
-    # def create_or_update_user_profile(sender, instance, created, **kwargs):
-    #     if created:
-    #         Profile.objects.create(user=instance)
-    #     # Existing users: just save the profile
-    #     instance.profile.save()
 
 
 class Task(models.Model):

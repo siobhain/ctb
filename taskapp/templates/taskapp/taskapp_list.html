@@ -5,7 +5,6 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
     <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
     <h1>Our Shared List of Jobs </h1>
     <h4>These are the outstanding jobs, If you have another job to add please

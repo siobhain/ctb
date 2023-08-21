@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 
-{% block head_title %}Community Task Board{% endblock %}
+{% block head_title %}todotasklist{% endblock %}
 
 {% block content %}
 
 {% if user.is_authenticated %}
-    <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
     <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
-    <h1>Our Shared List of Jobs </h1>
+    <h1>Our Shared List of Jobs todotasklist html </h1>
     <h4>These are the outstanding jobs, If you have another job to add please
         <a href="/add">Add a Task<button>Create</button></a>, If you need to update or delete any of your 
         jobs please <button>Update/Delete</button> 
@@ -37,7 +36,7 @@
         </table>
     </div>
 {% else %}
-    <h4>Please Sign In to proceed</h4>
+    <h4>Please Sign In to proceed todotasklist html </h4>
     <li><a href="{% url 'account_login' %}">Sign In</a></li>
     <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
 {% endif %}

@@ -5,11 +5,11 @@ from .models import Task, Profile
 
 
 class CustomSignupForm(SignupForm):
-    ROI = [('087', '087'), ('086', '086'), ('085', '085'), ('083', '083')]
+    ROI = [('083', '083'), ('085', '085'), ('086', '086'), ('087', '087')]
     firstname = forms.CharField(max_length=15, required=True)
     surname = forms.CharField(max_length=15, required=True)
-    mobile_prefix = forms.ChoiceField(choices=ROI)
-    mobile_number = forms.CharField(max_length=7, required=True, validators=[RegexValidator(regex='^\d{7}$', message='7 digits please')])
+    mobile_prefix = forms.ChoiceField(choices=ROI, required=True)
+    mobile_number = forms.CharField(max_length=7, required=True, validators=[RegexValidator(regex='^\d{7}$', message='Mobile needs 7 digits please')])
  
     def save(self, request):
         # self.fields.pop('email')

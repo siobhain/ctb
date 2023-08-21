@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Profile, Task
 
+
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('firstname', 'surname', 'gate_code', 'mobile_prefix', 'mobile_number', 'user')
@@ -9,7 +10,7 @@ class ProfileAdmin(admin.ModelAdmin):
     actions = ['change_gate_code', 'new_mobile']
 
     def change_gate_code(self, request, queryset):
-        queryset.update(gate_code='2345')
+        queryset.update(gate_code='9876')
 
     def new_mobile(self, request, queryset):
         queryset.update(mobile_prefix='083', mobile_number='0830831')
@@ -33,5 +34,5 @@ class TaskAdmin(admin.ModelAdmin):
         queryset.update(completed=True)
 
 # sob : change_to_new is used for testing purposes
-    def change_to_new(self, request, queryset):         
+    def change_to_new(self, request, queryset):
         queryset.update(status=False, completed=False)
