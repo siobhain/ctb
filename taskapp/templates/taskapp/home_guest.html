@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <h1>Welcome Guest to our Jobs Board </h1>
+    <h6>Here are some of the most recent jobs we have completed, if you
+        want to help then why not  
+        <a href="{% url 'account_signup' %}">Sign Up</a> as a member or
+        contact our Committee via SMS on 086 123 4567, Thank you
+    </h6> 
+    <div class="table-responsive">
+        <table class="table table-striped table-condensed"> 
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Description</th>  
+                </tr>
+            </thead>  
+            {% for task in task_list %}
+                <tr>
+                    <td> {{ task.created_on|date:"d M" }} </td>
+                    <td> {{ task.get_category_display }} </td>
+                    <td> {{ task }} </td>
+                </tr>
+            {% empty %}
+                <tr> <td> Currently Empty!! Looks like we could use your help then</td></tr>    
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{%endblock%}

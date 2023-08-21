@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from taskapp.views import ctb_welcome, CompletedTaskList, TodoTaskList, create_task
+from taskapp.views import ctb_welcome,  create_task
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('list/', get_taskapp_list, name='list'),
-    path('welcome/', ctb_welcome, name='welcome'),
+    path('', ctb_welcome, name='welcome'),
     path('accounts/', include('allauth.urls')),
     # path('create/', 'create_task', name='create'),
     path('', include('taskapp.urls'), name='taskapp_urls'),

@@ -1,11 +1,20 @@
 from django.shortcuts import render, HttpResponse
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 from .models import Task
 from .forms import TaskForm
 
 
+# This is where it all begins!! Well picking iether of the 2 home pages 
+# This ctb_welcome function will launch the members homepage (home_member.html)
+# once a user is logged in - Decorator login_required is what takes care of this
+# & if no user is logged in the guest will be redirected according to the
+# LOGIN_URL in settings.py which is 'guest/' & this url is routed to the
+# the CBV GuestCompletedList below => home_guest.html
+
+@login_required()
 def ctb_welcome(request):
-    return HttpResponse("Welcome to CTB app")
+    return render(request, 'taskapp/home_member.html')
 
 
 def create_task(request):
@@ -26,20 +35,22 @@ def create_task(request):
 #     }
 #     return render(request, 'taskapp/taskapp_list.html', context)
 
-# CompletedTaskList : A class based view that inherits from ListView
-# Used to display a list of Task objects that are completed (True)
-# this view is rendered by the completedtasklist.html template
 
-class CompletedTaskList(generic.ListView):
+# GuestCompletedList : A class based view (CBV) that inherits from ListView
+# Used to display a list of Task objects that are completed (True)
+# this view is rendered by the home_guest.html template
+# & is what general public / guests can see on Guest home page
+class GuestCompletedList(generic.ListView):
     model = Task
     queryset = Task.objects.filter(completed=True).order_by('-created_on')
-    template_name = 'index.html'
+    template_name = 'taskapp/home_guest.html'
 
-# TodoTaskList : A class based view that inherits from ListView
+
+# MemberTodoList : A class based view that inherits from ListView
 # Used to display a list of Task objects that are not completed (False)
-# this view is rendered by the todotasklist.html template
-
-class TodoTaskList(generic.ListView):
+# this view is rendered by the home_member.html template
+# & is what logged in members can see for their home
+class MemberTodoList(generic.ListView):
     model = Task
     queryset = Task.objects.filter(completed=False).order_by('-created_on')
-    template_name = 'taskapp/todotasklist.html'
+    template_name = 'taskapp/home_member.html'

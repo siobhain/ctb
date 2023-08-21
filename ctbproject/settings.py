@@ -63,6 +63,7 @@ ACCOUNT_FORMS = {
     'signup': 'taskapp.forms.CustomSignupForm',
 }
 SITE_ID = 1
+LOGIN_URL = 'guest/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
