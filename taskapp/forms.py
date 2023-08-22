@@ -27,4 +27,8 @@ class CustomSignupForm(SignupForm):
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ('description',)
+        fields = ('category', 'description', 'completed')
+        help_texts = {
+            'category': ('Please choose category most related to Task'),
+            'description': ('Max 120 characters & Remember as you create this task - only you can delete this task')
+            }

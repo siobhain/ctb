@@ -48,6 +48,7 @@ Ireland’s community, voluntary and charity sector makes a very substantial con
         - [sqlite3 deployed on 1st/Empty Deployment](#sqlite3-deployed-on-1stempty-deployment)
         - [Move Task.created_by to admin if user instance is deleted](#move-taskcreated_by-to-admin-if-user-instance-is-deleted)
         - [Removing Change Email option for authenticated user](#removing-change-email-option-for-authenticated-user)
+        - [@login_required Decorator on Class Based View : function object has no attribute as_view](#login_required-decorator-on-class-based-view--function-object-has-no-attribute-as_view)
     - [Configuration](#configuration)
                 - [Back to top](#back-to-top)
     - [Credits](#credits)
@@ -255,6 +256,13 @@ So on further testing/digging I found user could get into screens like this - de
 & once deleted solved the issue!.  However that was AFTER I went down the rabbit hole of solving why I'd be getting these Connecion Refused type errors which I knew were occuring because I had turned off email in `settings.py` BUT WHY was user being offered these options in 1st place?? Lesson learnt - There is almost always an explanation!! 
  
 ![ChangeEmailError-ConnectionRefused](https://github.com/siobhain/ctb/assets/44432977/d7022284-8be0-482d-8565-e26bbc8f9ae6)
+
+### `@login_required` Decorator on Class Based View : `function object has no attribute as_view`
+I had this problem when I was trying to have the homepage URL render different templates/views depending on user being logged in or not (member v's guest).  I was unable to get this decorator working correctly with CBV `MemberTodoList` & `LOGIN_URL=guest`  Long story short - I'm sure you're glad - but I eventually got the decorator working with a FBV `ctb-welcome` TG. The `function object has no attribute as_view` error was on the urls.py (not the views).  I could not see the connection & checked and rechecked filenames, Class names, Views, functions urls etc but to no avail.  I need to work more with CBVs as they are very powerful and I don't fully understand yet.  It was a one liner on a [stackoverflow](https://stackoverflow.com/questions/36680358/why-show-this-error-function-object-has-no-attribute-as-view/42108345#42108345) entry that made me change tack. Even though it was 6 years old & prior to Django 1.9, it said 
+- >You can't use the login_required decorator on a class like that, You need to use method_decorator
+
+While I did not fully understand the `class like that` comment I went down the road of method_decorator but not for too long before I had the brainwave of using decorator on a FBV & sure I had a lovely little welcome FBV created at start of PP4 just to get the ball rolling & I was able to use that.  So eventually got the functionality I needed just 8 hours later is all, & its probably a roundabout way of doing it but it works.
+
 
 
 ## Configuration

@@ -8,6 +8,6 @@ urlpatterns = [
     # path('', views.MemberTodoList.as_view(), name='member-todo-list'),
     path('guest/', views.GuestCompletedList.as_view(), name='guest-completed-list'),
     #path('', views.MemberTodoList.as_view(), name='member-todo-list'),
-    # path('create/', views.CreateTask.as_view(), name='create-task'),
+    path('create/', create_task, name='create-task'),
     # path('update/', views.UpdateTask.as_view(), name='update-task')
 ]

@@ -1,7 +1,7 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.views import generic
 from django.contrib.auth.decorators import login_required
-from .models import Task
+from .models import Task, Profile
 from .forms import TaskForm
 
 
@@ -14,26 +14,34 @@ from .forms import TaskForm
 
 @login_required()
 def ctb_welcome(request):
+    user = request.user
+    # profile = 
     return render(request, 'taskapp/home_member.html')
 
 
 def create_task(request):
     if request.method == 'POST':
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            form.save()
-            # Redirect to success page
+        category = request.POST.get('category')
+        description = request.POST.get('description')
+        created_by = request.user
+        Task.objects.create(
+            description=description, 
+            category=category, 
+            created_by=created_by
+            )
+        # return redirect('get_todo_list')
+        render(request, 'taskapp/home_member.html')
     else:
         form = TaskForm()
-    return render(request, 'taskapp/create_task.html', {'form': form})
+        return render(request, 'taskapp/create_task.html', {'form': form})
 
-# def get_taskapp_list(request):
-#     tasks = Task.objects.all()
-#     queryset = Task.objects.filter(completed=True)
-#     context = {
-#         'tasks': tasks
-#     }
-#     return render(request, 'taskapp/taskapp_list.html', context)
+def get_todo_list(request):
+    tasks = Task.objects.all()
+    queryset = Task.objects.filter(completed=False)
+    context = {
+        'tasks': tasks
+    }
+    return render(request, 'taskapp/todo_list.html', context)
 
 
 # GuestCompletedList : A class based view (CBV) that inherits from ListView
