@@ -24,5 +24,5 @@ urlpatterns = [
     path('', ctb_welcome, name='welcome'),
     path('accounts/', include('allauth.urls')),
     path('', include('taskapp.urls'), name='taskapp_urls'),
-    # path('create/', create_task, name='create'),
+    path('create/', create_task, name='create'),
 ]

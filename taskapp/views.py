@@ -1,8 +1,15 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.views import generic
 from django.contrib.auth.decorators import login_required
+from django.template.defaultfilters import slugify
 from .models import Task, Profile
 from .forms import TaskForm
+
+# from django.contrib.messages import get_messages
+
+# storage = get_messages(request)
+# for message in storage:
+#     do_something_with_the_message(message)
 
 
 # This is where it all begins!! Well picking iether of the 2 home pages 
@@ -23,19 +30,22 @@ def create_task(request):
     if request.method == 'POST':
         category = request.POST.get('category')
         description = request.POST.get('description')
+        slug = slugify(description)
         created_by = request.user
         Task.objects.create(
             description=description, 
+            slug = slug,
             category=category, 
             created_by=created_by
             )
         # return redirect('get_todo_list')
-        render(request, 'taskapp/home_member.html')
+        return render(request, 'taskapp/todo_list.html')
     else:
         form = TaskForm()
         return render(request, 'taskapp/create_task.html', {'form': form})
 
 def get_todo_list(request):
+    # model = Task
     tasks = Task.objects.all()
     queryset = Task.objects.filter(completed=False)
     context = {
