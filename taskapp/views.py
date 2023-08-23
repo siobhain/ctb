@@ -21,9 +21,12 @@ from .forms import TaskForm
 
 @login_required()
 def ctb_welcome(request):
-    user = request.user
-    # profile = 
-    return render(request, 'taskapp/home_member.html')
+    firstname = get_firstname(request)
+    tasks = Task.objects.filter(completed=False).order_by('-created_on')
+    context = {
+        'tasks': tasks
+    }
+    return render(request, 'taskapp/home_member.html', context)
 
 @login_required()
 def get_firstname(request):
@@ -35,6 +38,7 @@ def get_surname(request):
     profile = Profile.objects.get(user=request.user)
     return(profile.surname.capitalize())
 
+@login_required()
 def create_task(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
@@ -50,7 +54,7 @@ def create_task(request):
                 category=category, 
                 created_by=created_by)
             length = len(task)
-            title = task if length < 20 else task[:10] + "..." + task[-10:]
+            title = task if length <= 20 else task[:10] + "..." + task[-10:]
             messages.success(request, f'Thank you {name}, Task \"{title.capitalize()}\" has been added')
             return redirect('/todo/')
         else:

@@ -4,7 +4,11 @@
 
 {% block content %}
 <h1>The Todo List </h1>
-<h4><a href="/add">Add a Task<button>Create</button></a>,  <button>Update/Delete</button> </h4> 
+<h4>Hello {{user|capfirst}}, Now we have {{ tasks|length }} outstanding task(s)
+    <br> If you have more to add please <a href="create"><button>Add</button></a>, 
+    <br> If you have completed your task please <a href="update"><button>Update</button></a>
+    <br> If you need to remove one of your tasks please <a href="remove"><button>Remove</button></a>
+</h4>
 <div class="table-responsive">
 <table class="table table-striped table-condensed"> 
     <thead>
@@ -16,7 +20,7 @@
         </tr>
     </thead>
     <tbody>  
-        {% for task in task_list %}
+        {% for task in tasks %}
             <tr>
                 <td> {{ task.created_on|date:"d M" }} </td>
                 <td> {{ task.created_by }} </td>
@@ -24,7 +28,12 @@
                 <td> {{ task }} </td>
             </tr>
         {% empty %}
-            <tr> <td> Currently Empty!!</td></tr>    
+            <td> {% now "d M" %} </td>
+            <td> NO TASKS </td>
+            <td> ON THE LIST </td>
+            <td>I'm sure you can think of one to
+                <a href="/create"><button>Add</button></a>
+            </td>   
         {% endfor %}
     </tbody>
 </table>
