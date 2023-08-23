@@ -52,7 +52,7 @@ def create_task(request):
             length = len(task)
             title = task if length < 20 else task[:10] + "..." + task[-10:]
             messages.success(request, f'Thank you {name}, Task \"{title.capitalize()}\" has been added')
-            return redirect('/full/')
+            return redirect('/todo/')
         else:
             messages.error(request, f'Error on the create task, Please try again {name}')
             form = TaskForm()
@@ -62,9 +62,8 @@ def create_task(request):
         return render(request, 'taskapp/create_task.html', {'form': form})
 
 def get_todo_list(request):
-    # model = Task
+    # tasks = Task.objects.filter(completed=False).order_by('-created_on')
     tasks = Task.objects.all()
-    # queryset = Task.objects.filter(completed=False)
     context = {
         'tasks': tasks
     }
