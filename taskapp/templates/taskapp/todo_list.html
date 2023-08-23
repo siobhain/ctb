@@ -4,17 +4,16 @@
 
 {% block content %}
 <h1>The Todo List </h1>
-<h4>Hello {{user|capfirst}}, Now we have {{ tasks|length }} outstanding task(s)
-    <br> If you have more to add please <a href="create"><button>Add</button></a>, 
-    <br> If you have completed your task please <a href="update"><button>Update</button></a>
-    <br> If you need to remove one of your tasks please <a href="remove"><button>Remove</button></a>
+<h4>Hello {{user|capfirst}}, Our Community has {{ tasks|length }} outstanding task(s)
+    <br> To create a new task please <a href="/create"><button>Add</button></a>
+    <br>Use <button>Update</button> and <button>Remove</button> in the table below for Tasks created by you
 </h4>
 <div class="table-responsive">
 <table class="table table-striped table-condensed"> 
     <thead>
         <tr>
             <th>Date</th>
-            <th>Created By</th>
+            <th>Action or Owner</th>
             <th>Category</th>
             <th>Description</th>  
         </tr>
@@ -23,7 +22,13 @@
         {% for task in tasks %}
             <tr>
                 <td> {{ task.created_on|date:"d M" }} </td>
-                <td> {{ task.created_by }} </td>
+                <td>{% if task.created_by == user %}
+                        <a href="/edit/{{ task.id }}"><button>Update</button></a>
+                        <a href="/delete/{{ task.id }}"><button>Remove</button></a>
+                    {% else %}
+                        {{ task.created_by }}
+                    {% endif %}
+                </td>
                 <td> {{ task.get_category_display }} </td>
                 <td> {{ task }} </td>
             </tr>

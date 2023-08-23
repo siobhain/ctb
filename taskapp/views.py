@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.views import generic
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -64,6 +64,40 @@ def create_task(request):
     else:
         form = TaskForm()
         return render(request, 'taskapp/create_task.html', {'form': form})
+
+
+# def edit_item(request, item_id):
+#     item = get_object_or_404(Item, id=item_id)
+#     if request.method == 'POST':
+#         form = ItemForm(request.POST, instance=item)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('get_todo_list')
+#     form = ItemForm(instance=item)
+#     context = {
+#         'form': form
+#     }
+#     return render(request, 'todo/edit_item.html', context)
+
+def edit_task(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('/todo/')
+    form = TaskForm(instance=task)
+    context = {
+        'form': form
+    }
+    return render(request, 'taskapp/edit_task.html', context)
+
+
+def delete_task(request, task_id):
+  
+    return redirect('/todo') 
+
+
 
 def get_todo_list(request):
     # tasks = Task.objects.filter(completed=False).order_by('-created_on')
