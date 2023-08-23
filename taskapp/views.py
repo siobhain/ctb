@@ -1,12 +1,12 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.views import generic
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters import slugify
 from .models import Task, Profile
 from .forms import TaskForm
 
 # from django.contrib.messages import get_messages
-
 # storage = get_messages(request)
 # for message in storage:
 #     do_something_with_the_message(message)
@@ -25,21 +25,38 @@ def ctb_welcome(request):
     # profile = 
     return render(request, 'taskapp/home_member.html')
 
+@login_required()
+def get_firstname(request):
+    profile = Profile.objects.get(user=request.user)
+    return(profile.firstname.capitalize())
+
+@login_required()
+def get_surname(request):
+    profile = Profile.objects.get(user=request.user)
+    return(profile.surname.capitalize())
 
 def create_task(request):
     if request.method == 'POST':
-        category = request.POST.get('category')
-        description = request.POST.get('description')
-        slug = slugify(description)
-        created_by = request.user
-        Task.objects.create(
-            description=description, 
-            slug = slug,
-            category=category, 
-            created_by=created_by
-            )
-        # return redirect('get_todo_list')
-        return render(request, 'taskapp/todo_list.html')
+        form = TaskForm(request.POST)
+        name = get_firstname(request)
+        if form.is_valid():
+            category = request.POST.get('category')
+            task = request.POST.get('description')
+            slug = slugify(task)
+            created_by = request.user
+            Task.objects.create(
+                description=task,
+                slug = slug,
+                category=category, 
+                created_by=created_by)
+            length = len(task)
+            title = task if length < 20 else task[:10] + "..." + task[-10:]
+            messages.success(request, f'Thank you {name}, Task \"{title.capitalize()}\" has been added')
+            return redirect('/full/')
+        else:
+            messages.error(request, f'Error on the create task, Please try again {name}')
+            form = TaskForm()
+            return render(request, 'taskapp/create_task.html', {'form': form})
     else:
         form = TaskForm()
         return render(request, 'taskapp/create_task.html', {'form': form})
@@ -47,7 +64,7 @@ def create_task(request):
 def get_todo_list(request):
     # model = Task
     tasks = Task.objects.all()
-    queryset = Task.objects.filter(completed=False)
+    # queryset = Task.objects.filter(completed=False)
     context = {
         'tasks': tasks
     }
@@ -72,3 +89,15 @@ class MemberTodoList(generic.ListView):
     model = Task
     queryset = Task.objects.filter(completed=False).order_by('-created_on')
     template_name = 'taskapp/home_member.html'
+
+
+# Same as above but with the Full list of Tasks
+class FullTaskList(generic.ListView):
+    model = Task
+    queryset = Task.objects.all().order_by('-created_on')
+    template_name = 'taskapp/full_list.html'
+
+# sob 22/8 Could not get this to work on create_task, Got from DjangoDoc
+# fulllist = FullTaskList.as_view()
+# return fulllist(request)
+# return render(request, 'taskapp/full_list.html', fulllist)
