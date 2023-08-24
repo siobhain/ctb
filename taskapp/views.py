@@ -28,15 +28,18 @@ def ctb_welcome(request):
     }
     return render(request, 'taskapp/home_member.html', context)
 
+
 @login_required()
 def get_firstname(request):
     profile = Profile.objects.get(user=request.user)
     return(profile.firstname.capitalize())
 
+
 @login_required()
 def get_surname(request):
     profile = Profile.objects.get(user=request.user)
     return(profile.surname.capitalize())
+
 
 @login_required()
 def create_task(request):
@@ -81,10 +84,13 @@ def create_task(request):
 
 def edit_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
+    description = task.description
     if request.method == 'POST':
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
+            name = get_firstname(request)
+            messages.success(request, f'{name}, You have changed this Task \"{description.capitalize()}\"')
             return redirect('/todo/')
     form = TaskForm(instance=task)
     context = {
@@ -94,9 +100,15 @@ def edit_task(request, task_id):
 
 
 def delete_task(request, task_id):
-  
+    task = get_object_or_404(Task, id=task_id)
+    description = task.description
+    name = get_firstname(request)
+    if task.created_by == request.user:
+        messages.success(request, f'{name}, You have REMOVED this Task \"{description.capitalize()}\"')
+        task.delete()
+    else:
+        messages.warning(request, "You can only delete a Task you have created")
     return redirect('/todo') 
-
 
 
 def get_todo_list(request):

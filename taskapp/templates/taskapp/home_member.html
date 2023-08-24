@@ -6,10 +6,10 @@
 
 <h1>Welcome {{user|capfirst}} to Our Shared Community Task Board</h1>
 <h4>As of {% now "d M" %} we have {{ tasks|length }} outstanding task(s)
-    <br> If you have more to add please <a href="create"><button>Add</button></a>, 
-    <br> If you have completed your task please <a href="update"><button>Update</button></a>
-    <br> If you need to remove one of your tasks please <a href="remove"><button>Remove</button></a>
+    <br> If you have more to add please <a href="/create"><button>Add</button></a>, 
+    <br> If you need to update or remove tasks please <a href="/todo"><button>Update/Remove</button></a>
 </h4> 
+
 <div class="table-responsive">
     <table class="table table-striped table-condensed"> 
         <thead>
