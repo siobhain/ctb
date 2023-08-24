@@ -103,13 +103,14 @@ def delete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     description = task.description
     name = get_firstname(request)
-    if task.created_by == request.user:
-        messages.success(request, f'{name}, You have REMOVED this Task \"{description.capitalize()}\"')
-        task.delete()
-    else:
-        messages.warning(request, "You can only delete a Task you have created")
-    return redirect('/todo') 
-
+    if request.method == 'POST':
+        if task.created_by == request.user:
+            messages.success(request, f'{name}, You have REMOVED this Task \"{description.capitalize()}\"')
+            task.delete()
+        else:
+            messages.warning(request, "You can only delete a Task you have created")
+            return redirect('/todo') 
+    return render(request, 'taskapp/delete_task.html', {'task': task})
 
 def get_todo_list(request):
     # tasks = Task.objects.filter(completed=False).order_by('-created_on')

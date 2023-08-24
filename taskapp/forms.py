@@ -29,7 +29,7 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ('category', 'description', 'completed')
         help_texts = {
-            'category': ('Please choose category most related to Task'),
-            'description': ('Max 120 characters & Remember once created only you can remove this from the list'),
-            'completed': ('Tick this box when the job is done')
+            'category': ('Please choose category most related to Task you are adding'),
+            'description': ('Max 120 characters & Remember once created only you can remove this Task'),
+            'completed': ('Tick this box when the above Task is completed')
             }
