@@ -61,7 +61,7 @@ def create_task(request):
             messages.success(request, f'Thank you {name}, Task \"{title.capitalize()}\" has been added')
             return redirect('/todo/')
         else:
-            messages.error(request, f'Error on the create task, Please try again {name}')
+            messages.error(request, f'Error adding a  task, Please try again {name}')
             form = TaskForm()
             return render(request, 'taskapp/create_task.html', {'form': form})
     else:
@@ -69,18 +69,13 @@ def create_task(request):
         return render(request, 'taskapp/create_task.html', {'form': form})
 
 
-# def edit_item(request, item_id):
-#     item = get_object_or_404(Item, id=item_id)
-#     if request.method == 'POST':
-#         form = ItemForm(request.POST, instance=item)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('get_todo_list')
-#     form = ItemForm(instance=item)
-#     context = {
-#         'form': form
-#     }
-#     return render(request, 'todo/edit_item.html', context)
+# edit_task could be further refined by having separate
+# CTA buttons/links for
+#   Mark Task as Done ie Conpleted 
+#   Change the Category choice
+#   & add option to undo Conpleted tickbox
+# Might get to this before submitting.
+# Also could be put into a modal like delete_taask
 
 def edit_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
@@ -89,8 +84,11 @@ def edit_task(request, task_id):
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
+            task = form.cleaned_data['description']
+            length = len(task)
+            title = form.description if length <= 20 else task[:10] + "..." + task[-10:]
             name = get_firstname(request)
-            messages.success(request, f'{name}, You have changed this Task \"{description.capitalize()}\"')
+            messages.success(request, f'{name}, Update(s) to this Task \"{title.capitalize()}\" are reflected on the board')
             return redirect('/todo/')
     form = TaskForm(instance=task)
     context = {
@@ -108,13 +106,13 @@ def delete_task(request, task_id):
             messages.success(request, f'{name}, You have REMOVED this Task \"{description.capitalize()}\"')
             task.delete()
         else:
-            messages.warning(request, "You can only delete a Task you have created")
+            messages.warning(request, "You can only remove a Task that was created by YOU")
             return redirect('/todo') 
     return render(request, 'taskapp/delete_task.html', {'task': task})
 
 def get_todo_list(request):
-    # tasks = Task.objects.filter(completed=False).order_by('-created_on')
-    tasks = Task.objects.all()
+    tasks = Task.objects.filter(completed=False).order_by('-created_on')
+    # tasks = Task.objects.all()
     context = {
         'tasks': tasks
     }

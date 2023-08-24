@@ -30,7 +30,6 @@
                 <td> {{ task.created_on|date:"d M" }} </td>
                 <td>{% if task.created_by == user %}
                         <a href="/edit/{{ task.id }}"><button>Update</button></a>
-                        <!-- <a href="/delete/{{ task.id }}"><button>Remove</button></a> -->
                         <button type="button" class="btn btn-danger"  data-bs-target="#removeModal" data-bs-toggle="modal" >
                             Remove Task
                           </button>
@@ -62,15 +61,11 @@
             <table class="table table-striped table-condensed"> 
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Category</th>
                         <th>Description</th>  
                     </tr>
                 </thead>
                 <tbody>  
                         <tr>
-                            <td> {{ task.created_on|date:"d M" }} </td>
-                            <td> {{ task.get_category_display }} </td>
                             <td> {{ task }} </td>
                         </tr>
                 </tbody>
