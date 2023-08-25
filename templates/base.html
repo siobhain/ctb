@@ -21,7 +21,11 @@
     {% block body %}
       {% if messages %}
       <div>
-        <strong>Take note of your current message(s):</strong>
+        {% if  messages|length < 2 %} 
+          <strong>Take note of your current message:</strong>
+        {% else %}
+          <strong>Take note of your current message(s):</strong>
+        {%endif%}
         <ul>
           {% for message in messages %}
           <li>{{message}}</li>

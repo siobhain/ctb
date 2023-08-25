@@ -4,10 +4,13 @@
 
 {% block content %}
 
-<h2>Welcome {{user|capfirst}} to Our Community Task Board</h2>
-<h4>As of {% now "d M" %} we have {{ tasks|length }} outstanding task(s)
-    <br> If you have more to add please <a href="/create"><button>Add</button></a>, 
-    <br> If you need to update or remove tasks please <a href="/todo"><button>Update/Remove</button></a>
+<h2>Welcome {{ user.profile.firstname|capfirst }}</h2>
+{% if  tasks|length > 2 %} 
+    <br><h4>As of {% now "d M" %} we have {{ tasks|length }} outstanding Tasks
+{%endif%}
+<h4>
+    <br> If you have something new please <a href="/create"><button>Add</button></a>, 
+    <br> If you need to update or remove task please <a href="/todo"><button>Update/Remove</button></a>
 </h4> 
 
 <div class="table-responsive">
@@ -17,22 +20,24 @@
                 <th>Date</th>
                 <th>Created By</th>
                 <th>Category</th>
-                <th>Description</th>  
+                <th>Task Description</th>  
             </tr>
         </thead>
         {% for task in tasks %}
             <tr>
                 <td> {{ task.created_on|date:"d M" }} </td>
-                <td> {{ task.created_by }} </td>
+                <td> {{ task.created_by.profile.firstname|capfirst}} 
+                     {{task.created_by.profile.surname|capfirst}}
+                </td>
                 <td> {{ task.get_category_display }} </td>
-                <td> {{ task }} </td>
+                <td> {{ task.description|capfirst }} </td>
             </tr>
         {% empty %}
             <tr>
                 <td> {% now "d M" %} </td>
                 <td> NO TASKS </td>
-                <td> ON THE LIST </td>
-                <td>I'm sure you can think of one to
+                <td> NO TASKS </td>
+                <td>Do you need to
                     <a href="/create"><button>Add</button></a></td>
             </tr>
         {% endfor %}

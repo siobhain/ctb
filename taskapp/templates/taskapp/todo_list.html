@@ -6,11 +6,11 @@
 <h2>Todo Board</h2>
 <br>
 <h5>
-    {{ user.profile.firstname|capfirst}},  
+    {{ user.profile.firstname|capfirst }},  
     You can <button>Update</button> or <button>Remove</button> 
     your Tasks from the board below <br> Use 
     <a href="/create"><button>Add</button></a> to add a new Task
-    {% if  tasks|length > 1 %} 
+    {% if  tasks|length > 2 %} 
         <br> Did you know we have {{ tasks|length }} outstanding tasks today. 
     {%endif%}
 </h5>
@@ -19,9 +19,9 @@
     <thead>
         <tr>
             <th>Date</th>
-            <th>Action or Owner</th>
+            <th>Action or OwnedBy</th>
             <th>Category</th>
-            <th>Description</th>  
+            <th>Task Description</th>  
         </tr>
     </thead>
     <tbody>  
@@ -35,19 +35,19 @@
                         </button>
 
                     {% else %}
-                        {{task.created_by.profile.firstname}}
-                        {{task.created_by.profile.surname}}
+                        {{ task.created_by.profile.firstname|capfirst }}
+                        {{ task.created_by.profile.surname|capfirst }}
                     {% endif %}
                 </td>
                 <td> {{ task.get_category_display }} </td>
-                <td> {{ task }} </td>
+                <td> {{ task|capfirst }} </td>
             </tr>
         {% empty %}
             <td> {% now "d M" %} </td>
             <td> NO TASKS</td>
             <td> NO TASKS </td>
-            <td> {{ user.profile.firstname|capfirst}}, Can you think of one to
-                <a href="/create"><button>Add</button></a>
+            <td> {{ user.profile.firstname|capfirst }}, Do you need to
+                <a href="/create"><button>Add</button></a> 
             </td>   
         {% endfor %}
     </tbody>
@@ -83,7 +83,7 @@
 </div>
 </div>
 {%endblock%}
-{% block extras %}
+{% block extrabody %}
 {% load static %}
 <script src="{% static 'js/deletetask.js' %}"></script>
-{% endblock extras %}
+{% endblock %}
