@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block head_title %}Member home{% endblock %}
+{% block head_title %}Member Home{% endblock %}
 
 {% block content %}
 
-<h1>Welcome {{user|capfirst}} to Our Shared Community Task Board</h1>
+<h2>Welcome {{user|capfirst}} to Our Community Task Board</h2>
 <h4>As of {% now "d M" %} we have {{ tasks|length }} outstanding task(s)
     <br> If you have more to add please <a href="/create"><button>Add</button></a>, 
     <br> If you need to update or remove tasks please <a href="/todo"><button>Update/Remove</button></a>

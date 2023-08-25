@@ -16,11 +16,12 @@
     {% endblock %}
   </head>
   <body>
+    <h1>Shared Community Task Board</h1>
+    {# Messages & Menu will be on every page that extends this base file #}
     {% block body %}
-
       {% if messages %}
       <div>
-        <strong>Messages:</strong>
+        <strong>Take note of your current message(s):</strong>
         <ul>
           {% for message in messages %}
           <li>{{message}}</li>
@@ -43,7 +44,7 @@
       {% block content %}
       {% endblock %}
     {% endblock %}
-    {% block extra_body %}
+    {% block extrabody %}
     {% endblock %}
   </body>
 </html>

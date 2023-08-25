@@ -1,19 +1,18 @@
 {% extends "base.html" %}
-
+{% block head_title %}Add Task{% endblock %}
 {% block content %}
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <h1>Create a New Task</h1>
-                <h2>Shared Community Task Board</h2>
+                <h2>Add a New Task</h2>
             </div>
             <form method="POST">
                 <div>
                     {% csrf_token %}
                     {{ form.as_p }}
                 </div>
-                <button type="submit">Create</button>
+                <button type="submit">Add</button>
             </form>
         </div>
     </div>
