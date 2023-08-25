@@ -107,7 +107,7 @@ def delete_task(request, task_id):
             task.delete()
         else:
             messages.warning(request, "You can only remove a Task that was created by YOU")
-            return redirect('/todo') 
+        return redirect('/todo') 
     return render(request, 'taskapp/delete_task.html', {'task': task})
 
 def get_todo_list(request):
