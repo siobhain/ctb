@@ -5,22 +5,43 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+<h1>{% trans "Registration / Sign Up" %}</h1>
 
 <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
-
 <div class="container-fluid">
   <div class="row">
-    <h1>{% trans "Sign Up" %}</h1>
-    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
-      <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-    </form>
+    <div class="col-lg-6 col-md-6 col-12">
+      <h5>Once you have registered you will be able to 
+        <ol> 
+          <li>View outstanding Tasks on our Shared Task Board</li> 
+          <li>View completed Tasks on our Shared Task Board</li> 
+          <li>Add Tasks to the board</li> 
+          <li>Change text and/or status of any  you have added</li>
+          <li>Delete Task you have added</li> 
+        </ol>
+        The following functionality will be added in In the next version
+        <ol> 
+          <li>Request another member be assigned a Task</li>
+          <li>Change your passowrd, mobile number, email address</li> 
+          <li>View contact details for other memebers</li> 
+          <li>Received a unique Gate Code for entrance to facility</li> 
+          <li>View what members are onsite</li> 
+          <li>Leave commments/likes on any Task</li> 
+        </ol>
+      </h5>
+    </div>
+    <div class="col-lg-6 col-md-6 col-12">
+      <h5> Please complete this form to register as member</h5>
+      <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <button type="submit">{% trans "Register" %} &raquo;</button>
+      </form>
+    </div>
   </div>
 </div>    
 
