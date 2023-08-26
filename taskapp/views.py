@@ -6,13 +6,8 @@ from django.template.defaultfilters import slugify
 from .models import Task, Profile
 from .forms import TaskForm
 
-# from django.contrib.messages import get_messages
-# storage = get_messages(request)
-# for message in storage:
-#     do_something_with_the_message(message)
-
-
-# This is where it all begins!! Well rendering either of the 2 home pages 
+# ctb_welcome
+# This is where it all begins!! Well rendering either of the 2 home pages
 # This ctb_welcome function will launch the members homepage (home_member.html)
 # if a user is logged in - Decorator login_required is what takes care of this
 # & if no user is logged in the guest will be redirected according to the
@@ -32,13 +27,13 @@ def ctb_welcome(request):
 @login_required()
 def get_firstname(request):
     profile = Profile.objects.get(user=request.user)
-    return(profile.firstname.capitalize())
+    return (profile.firstname.capitalize())
 
 
 @login_required()
 def get_surname(request):
     profile = Profile.objects.get(user=request.user)
-    return(profile.surname.capitalize())
+    return (profile.surname.capitalize())
 
 
 @login_required()
@@ -53,8 +48,8 @@ def create_task(request):
             created_by = request.user
             Task.objects.create(
                 description=task,
-                slug = slug,
-                category=category, 
+                slug=slug,
+                category=category,
                 created_by=created_by)
             length = len(task)
             title = task if length <= 20 else task[:10] + "..." + task[-10:]
@@ -97,18 +92,19 @@ def edit_task(request, task_id):
     return render(request, 'taskapp/edit_task.html', context)
 
 
+# delete task is rudimentary, unable to get modal to work :-(
+
 def delete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     description = task.description
     name = get_firstname(request)
-    if request.method == 'POST':
-        if task.created_by == request.user:
-            messages.success(request, f'{name}, You have REMOVED this Task \"{description.capitalize()}\"')
-            task.delete()
-        else:
-            messages.warning(request, "You can only remove a Task that was created by YOU")
-        return redirect('/todo') 
-    return render(request, 'taskapp/delete_task.html', {'task': task})
+    if task.created_by == request.user:
+        messages.success(request, f'{name}, You have REMOVED this Task \"{description.capitalize()}\"')
+        task.delete()
+    else:
+        messages.warning(request, "You can only remove a Task that was created by YOU")
+    return redirect('/todo')
+
 
 def get_todo_list(request):
     tasks = Task.objects.filter(completed=False).order_by('-created_on')
@@ -140,14 +136,9 @@ class MemberTodoList(generic.ListView):
     paginate_by = 5
 
 
-# Same as above but with the Full list of Tasks
+# Same as above but with the Full list of Tasks, plan to use in navbar
 class FullTaskList(generic.ListView):
     model = Task
     queryset = Task.objects.all().order_by('-created_on')
     template_name = 'taskapp/full_list.html'
-    paginate_by = 5
-
-# sob 22/8 Could not get this to work on create_task, Got from DjangoDoc
-# fulllist = FullTaskList.as_view()
-# return fulllist(request)
-# return render(request, 'taskapp/full_list.html', fulllist)
+    paginate_by = 10

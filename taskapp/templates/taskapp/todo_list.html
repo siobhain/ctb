@@ -30,10 +30,9 @@
                 <td> {{ task.created_on|date:"d M" }} </td>
                 <td>{% if task.created_by == user %}
                         <a href="/edit/{{ task.id }}"><button>Update</button></a>
-                        <button type="button" class="btn btn-danger"  data-mytaskid="{{ task.id }}" data-bs-target="#removeModal" data-bs-toggle="modal" >
-                            Remove Task
-                        </button>
-
+                        <a href="/delete/{{task.id}}">
+                            <button class="btn btn-danger" data-bs-toggle="tooltip" title="Delete cannot be undone">Delete Task</button>
+                        </a>
                     {% else %}
                         {{ task.created_by.profile.firstname|capfirst }}
                         {{ task.created_by.profile.surname|capfirst }}
@@ -53,26 +52,13 @@
     </tbody>
 </table>
 
-<!-- Modal for Delete Task-->
-<div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="removeModalLabel" aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Confirm Remove Task</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-             <p>Are you sure you want to remove this {{ task.id }} from the board? This action cannot be undone</p>
-        </div>
-        <div class="modal-footer">
-            <a id="cancel" href="/todo" class="btn btn-link">Cancel</a>
-            <a id="deleteConfirm" href="#" class="btn btn-danger">Confirm Delete</a>
-        </div>
-    </div>
-</div>
-</div>
 {%endblock%}
 {% block extrabody %}
-{% load static %}
-<script src="{% static 'js/deletetask.js' %}"></script>
-{% endblock %}
+# from https://www.w3schools.com/bootstrap5/bootstrap_tooltip
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
+{% endblock %} -->

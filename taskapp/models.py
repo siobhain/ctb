@@ -10,11 +10,12 @@ STATUS = ((0, "Draft"), (1, "Live"))
 WORKCATEGORY = ((1, "Manual Work"), (2, "Admin Work"), (3, "Campaign Work"), (4, "Other"))
 ROI = (('083', '083'), ('085', '085'), ('086', '086'), ('087', '087'))
 
+
 class Profile(models.Model):
     # A user profile model to hold firstname, surname, mobile
     # & a default gate code which in future version will be
     # set by a security system via API
-  
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     firstname = models.CharField(max_length=15, null=False, blank=False)
     surname = models.CharField(max_length=15, null=False, blank=False)
@@ -26,7 +27,7 @@ class Profile(models.Model):
         blank=False,
         validators=[
             RegexValidator(
-                regex='^\d{7}$',
+                regex=r'^\d{7}$',
                 message='Mobile needs 7 digits please'
             )
         ]
@@ -39,6 +40,7 @@ class Profile(models.Model):
 
 class Task(models.Model):
     # Task model for holding details of each task
+    #
     # attached_image & likes are for use in future version
     description = models.CharField(max_length=120, unique=True, null=False, blank=False)
     slug = models.SlugField(max_length=120, unique=True)
@@ -56,4 +58,3 @@ class Task(models.Model):
 
     class Meta:
         ordering = ['-created_on']  # order by latest (minus)
-
