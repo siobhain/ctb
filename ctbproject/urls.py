@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views import generic
+from django.views.generic import TemplateView
 # from taskapp.views import ctb_welcome,  create_task
 
 
@@ -24,4 +26,6 @@ urlpatterns = [
     # path('', ctb_welcome, name='welcome'),
     path('accounts/', include('allauth.urls')),
     path('', include('taskapp.urls'), name='taskapp_urls'),
+    path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
+    path('soon/', TemplateView.as_view(template_name='soon.html'), name='soon'),
   ]

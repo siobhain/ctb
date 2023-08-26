@@ -18,9 +18,31 @@
   </head>
   
 <body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link"  href="{% url 'about' %}">About</a>
+        </li>
+        {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Sign Out</a></li>
+          {% else %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">Sign In</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a></li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'soon' %}">Gate App</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'soon' %}">Contact Details</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
 <h1>Shared Community Task Board</h1>
 
-{# Adapted from CI Blog project   #}
+<!-- Adapted from CI Blog project    -->
       <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
@@ -34,24 +56,14 @@
         </div>
     </div>
 
+  {% block content %}
+  {% endblock %}
+ 
+  {% block extrabody %}
+  {% endblock %}
 
-      <div>
-        <strong>Menu:</strong>
-        <ul>
-          {% if user.is_authenticated %}
-          <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
-          {% else %}
-          <li><a href="{% url 'account_login' %}">Sign In</a></li>
-          <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-          {% endif %}
-        </ul>
-      </div>
-      {% block content %}
-      {% endblock %}
-    {% block extrabody %}
-    {% endblock %}
+<!-- Adapted from CI Blog project : message alert goes after 3 seconds      -->
 
-{# Adapted from CI Blog project : message alert goes after 3 seconds  #}    
   <script>
     setTimeout(function () {
         let messages = document.getElementById('msg');

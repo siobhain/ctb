@@ -281,6 +281,8 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 
 ## Credits
 
+from (https://www.w3schools.com/bootstrap5/bootstrap_tooltip)
+
 [Sprint planning](https://codetree.com/guides/sprint-planning-github-issues)
 
 [Revert Django Migrations](https://awstip.com/a-guide-to-reverting-migrations-in-django-c091bef62d34) 
