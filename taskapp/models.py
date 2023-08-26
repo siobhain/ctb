@@ -14,7 +14,7 @@ class Profile(models.Model):
     # A user profile model to hold firstname, surname, mobile
     # & a default gate code which in future version will be
     # set by a security system via API
-    
+  
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     firstname = models.CharField(max_length=15, null=False, blank=False)
     surname = models.CharField(max_length=15, null=False, blank=False)
@@ -38,6 +38,8 @@ class Profile(models.Model):
 
 
 class Task(models.Model):
+    # Task model for holding details of each task
+    # attached_image & likes are for use in future version
     description = models.CharField(max_length=120, unique=True, null=False, blank=False)
     slug = models.SlugField(max_length=120, unique=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks')
@@ -55,5 +57,3 @@ class Task(models.Model):
     class Meta:
         ordering = ['-created_on']  # order by latest (minus)
 
-    def number_of_likes(self):
-        return self.likes.count()

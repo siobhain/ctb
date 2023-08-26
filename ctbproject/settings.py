@@ -28,8 +28,10 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
+# DISABLE_COLLECTSTATIC = 1
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['ctbapp-67038c5a6f0e.herokuapp.com', '8000-siobhain-ctb-ii4y9sbki1o.ws-eu104.gitpod.io']
 

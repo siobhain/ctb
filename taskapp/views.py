@@ -12,9 +12,9 @@ from .forms import TaskForm
 #     do_something_with_the_message(message)
 
 
-# This is where it all begins!! Well picking iether of the 2 home pages 
+# This is where it all begins!! Well rendering either of the 2 home pages 
 # This ctb_welcome function will launch the members homepage (home_member.html)
-# once a user is logged in - Decorator login_required is what takes care of this
+# if a user is logged in - Decorator login_required is what takes care of this
 # & if no user is logged in the guest will be redirected according to the
 # LOGIN_URL in settings.py which is 'guest/' & this url is routed to the
 # the CBV GuestCompletedList below => home_guest.html
@@ -137,6 +137,7 @@ class MemberTodoList(generic.ListView):
     model = Task
     queryset = Task.objects.filter(completed=False).order_by('-created_on')
     template_name = 'taskapp/home_member.html'
+    paginate_by = 5
 
 
 # Same as above but with the Full list of Tasks
@@ -144,6 +145,7 @@ class FullTaskList(generic.ListView):
     model = Task
     queryset = Task.objects.all().order_by('-created_on')
     template_name = 'taskapp/full_list.html'
+    paginate_by = 5
 
 # sob 22/8 Could not get this to work on create_task, Got from DjangoDoc
 # fulllist = FullTaskList.as_view()
