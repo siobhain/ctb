@@ -2,8 +2,9 @@
 {% block head_title %}Add Task{% endblock %}
 {% block content %}
 
-    <div class="container-fluid">
-        <div class="row">
+<div class="container-fluid">
+    <div class="row">
+        {% if user.is_authenticated %}
             <div class="col-md-12">
                 <h2>Add a New Task</h2>
             </div>
@@ -13,9 +14,12 @@
                     {{ form.as_p }}
                 </div>
                 <button type="submit">Add</button>
-                <a id="cancel" href="/todo" class="btn btn-link">Cancel</a>
-             </form>
-        </div>
+                <a id="cancel" href="/todo" class="btn btn-link">Cancel</button></a>
+            </form>
+            {% else %}
+            <a  href="/" class="btn btn-outline-warning">Unauthorised Action : Go Home</button></a>
+        {% endif %}
     </div>
+</div>
 
 {%endblock%}

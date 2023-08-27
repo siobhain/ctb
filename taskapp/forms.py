@@ -29,7 +29,9 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ('category', 'description', 'completed')
-        widgets = {'description': forms.TextInput(attrs={'size': '120'}), }
+        widgets = {
+            'description': forms.TextInput(attrs={'size': '120'}),
+        }
         help_texts = {
             'category': ('Please choose category most related to this Task'),
             'description': ('Max 120 characters & Remember once created only you can remove this Task'),

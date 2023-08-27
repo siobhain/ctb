@@ -61,7 +61,7 @@ def create_task(request):
             return render(request, 'taskapp/create_task.html', {'form': form})
     else:
         form = TaskForm()
-        return render(request, 'taskapp/create_task.html', {'form': form})
+        return render(request, 'taskapp/create_task.html', {'form': form, })
 
 
 # edit_task could be further refined by having separate
@@ -69,8 +69,10 @@ def create_task(request):
 #   Mark Task as Done ie Conpleted 
 #   Change the Category choice
 #   & add option to undo Conpleted tickbox
-# Might get to this before submitting.
-# Also could be put into a modal like delete_taask
+# Won't get to this before submitting.
+#
+# added extra variable created_by to context for defensive check in template
+# as unable to get defensive check here at server level working
 
 def edit_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
@@ -84,16 +86,17 @@ def edit_task(request, task_id):
             title = form.description if length <= 20 else task[:10] + "..." + task[-10:]
             name = get_firstname(request)
             messages.success(request, f'{name}, Update(s) to this Task \"{title.capitalize()}\" are reflected on the board')
-            return redirect('/todo/')
+        return redirect('/todo/')
     form = TaskForm(instance=task)
+    created_by = task.created_by
     context = {
-        'form': form
+        'form': form,
+        'created_by' : created_by,
     }
     return render(request, 'taskapp/edit_task.html', context)
 
 
-# delete task is rudimentary, unable to get modal to work :-(
-
+# delete task is rudimentary, unable to get modal to work :-(, had to revert
 def delete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     description = task.description
