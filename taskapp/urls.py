@@ -10,5 +10,5 @@ urlpatterns = [
     path('edit/<task_id>', views.edit_task, name='edit'),
     path('delete/<task_id>', views.delete_task, name='delete'),
     path('full/', views.FullTaskList.as_view(), name='full-task-list'),
-    path('todo/', views.get_todo_list, name='list'),
+    path('todo/', views.get_todo_list, name='todo'),
     ]

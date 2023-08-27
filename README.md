@@ -265,20 +265,7 @@ While I did not fully understand the `class like that` comment I went down the r
 I had this problem when I was tryingionality I needed just 8 hours later is all, & its probably a roundabout way of doing it but it works.
 
 ### Defensive programming on edit task ()
-I tried to include some defensive code in views for the the edit_tsk FBV (Update Task), unfortunatley it gave me HTTP 500 server errors. I then decided I could do this check on the client side ie check that logged in user is same as user that created the Task instance being updated.  Yes this is possible but I'd have to make a change to forms.py so that created_by field is passed to the client in the form, it was too late in the day to start messing with migrations
-ate
-Too late in the game i realise dthis is a major problem
-    if task.created_by == user:        
-        form = TaskForm(instance=task)
-        context = {
-            'form': form
-        }
-        return render(request, 'taskapp/edit_task.html', context)
-    else:
-        return redirect('/todo/')
-
-Hence the site is not very secure         
-
+I tried to include defensive code in views (server side) for the the edit_task FBV (Update Task) but was unable to get it fully to work - one of many problems was the HTTP 500 server errors. Hence this is now implemented on client side ie check that logged in user is same as user who created the Task instance being edited/updated. I was able to pass the created_by variable as an extra parameter on context
 
 ## Configuration
 

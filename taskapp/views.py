@@ -6,6 +6,7 @@ from django.template.defaultfilters import slugify
 from .models import Task, Profile
 from .forms import TaskForm
 
+
 # ctb_welcome
 # This is where it all begins!! Well rendering either of the 2 home pages
 # This ctb_welcome function will launch the members homepage (home_member.html)
@@ -13,6 +14,7 @@ from .forms import TaskForm
 # & if no user is logged in the guest will be redirected according to the
 # LOGIN_URL in settings.py which is 'guest/' & this url is routed to the
 # the CBV GuestCompletedList below => home_guest.html
+
 
 @login_required()
 def ctb_welcome(request):
@@ -66,13 +68,13 @@ def create_task(request):
 
 # edit_task could be further refined by having separate
 # CTA buttons/links for
-#   Mark Task as Done ie Conpleted 
+#   Mark Task as Done ie Conpleted
 #   Change the Category choice
 #   & add option to undo Conpleted tickbox
 # Won't get to this before submitting.
 #
 # added extra variable created_by to context for defensive check in template
-# as unable to get defensive check here at server level working
+# as unable to get defensive checks here at server level working
 
 def edit_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
@@ -91,12 +93,13 @@ def edit_task(request, task_id):
     created_by = task.created_by
     context = {
         'form': form,
-        'created_by' : created_by,
+        'created_by': created_by,
     }
     return render(request, 'taskapp/edit_task.html', context)
 
 
 # delete task is rudimentary, unable to get modal to work :-(, had to revert
+@login_required()
 def delete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     description = task.description
@@ -109,9 +112,9 @@ def delete_task(request, task_id):
     return redirect('/todo')
 
 
+@login_required()
 def get_todo_list(request):
     tasks = Task.objects.filter(completed=False).order_by('-created_on')
-    # tasks = Task.objects.all()
     context = {
         'tasks': tasks
     }

@@ -1,5 +1,19 @@
 
 body {
-    background-color: powderblue;
+    background-color: paleblue;
   }
   
+
+  .largefont > * {
+    font_size: 1.8rem;
+  }
+
+.largefont > * {
+    font_size: 1.8rem;
+    background-color: aquamarine;
+ }
+
+.whitebackground > * {
+  border: whitesmoke;
+  color: blueviolet;
+}

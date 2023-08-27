@@ -7,9 +7,8 @@
 <br>
 <h5>
     {{ user.profile.firstname|capfirst }},  
-    You can <button>Update</button> or <button>Remove</button> 
-    your Tasks from the board below <br> Use 
-    <a href="/create"><button>Add</button></a> to add a new Task
+    You can Update or Remove your Tasks from the board below <br> Use 
+    <a href="/create" class="btn btn-link btn-lg">Add</a> to add a new Task
     {% if  tasks|length > 2 %} 
         <br> Did you know we have {{ tasks|length }} outstanding tasks today. 
     {%endif%}
@@ -24,12 +23,12 @@
             <th>Task Description</th>  
         </tr>
     </thead>
-    <tbody>  
+    <tbody>
         {% for task in tasks %}
-            <tr>
+        <tr>
                 <td> {{ task.created_on|date:"d M" }} </td>
                 <td>{% if task.created_by == user %}
-                        <a href="/edit/{{ task.id }}"><button>Update</button></a>
+                        <a href="/edit/{{ task.id }}" class="btn btn-link btn-lg">Update</a>
                         <a href="/delete/{{task.id}}">
                             <button class="btn btn-danger" data-bs-toggle="tooltip" title="Delete cannot be undone">Delete Task</button>
                         </a>
