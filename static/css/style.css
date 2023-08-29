@@ -1,19 +1,12 @@
 
 body {
-    background-color: paleblue;
-  }
-  
-
-  .largefont > * {
-    font_size: 1.8rem;
-  }
-
-.largefont > * {
-    font_size: 1.8rem;
-    background-color: aquamarine;
- }
-
-.whitebackground > * {
-  border: whitesmoke;
-  color: blueviolet;
+  background-color:   lightblue;
 }
+
+.bg-white * {
+  background-color: antiquewhite;
+} 
+  
+.largefont > * {
+    font-size: 1.8rem;
+  }

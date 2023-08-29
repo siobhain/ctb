@@ -9,42 +9,51 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-
+    <!-- favicon  These are effecting navbar & I can't figure it out-->
+    <!-- <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png'" %}>
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png'" %}>
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png'" %}>
+    <link rel="manifest" href="{% static 'site.webmanifest'" %}> -->
     {% block extra_head %}
     {% endblock %}
 </head>
   
 <body>
-  <nav class="navbar navbar-expand bg-body-tertiary">
-    <div class="container-fluid white">
-      <ul class="navbar-nav ms-auto">
-       <li class="nav-item">
-          <a class="nav-link"  href="{% url 'about' %}">About</a>
-        </li>
-        {% if user.is_authenticated %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Sign Out</a></li>
-          {% else %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">Sign In</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a></li>
-        {% endif %}
-        <li class="nav-item d-none d-sm-block">
-          <a class="nav-link" href="{% url 'soon' %}">Gate App</a>
-        </li>
-        <li class="nav-item d-none d-sm-block">
-          <a class="nav-link" href="{% url 'soon' %}">Contact Details</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <h1>Shared Community Task Board</h1>
-
+  <header>
+    <nav class="navbar navbar-expand bg-light navbar-light">
+      <!-- <nav class="navbar navbar-expand bg-dark navbar-dark fixed-top"></nav> -->
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="/static/favicon-32x32.png" alt="CTB Logo"  class="rounded-pill"> 
+        </a>
+        <h1 class="navbar-brand">CTB Shared Community Task Board</h1>
+    <!-- <nav class="navbar navbar-expand navbar-light bg-light"> -->
+      </div>
+      <div class="container-fluid">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+              <a class="nav-link"  href="{% url 'member-home' %}">Home</a>
+          </li>
+          <li class="nav-item d-none d-sm-block">
+            <a class="nav-link"  href="{% url 'about' %}">About</a>
+          </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Sign Out</a></li>
+            {% else %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">Sign In</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a></li>
+          {% endif %}
+          <li class="nav-item d-none d-sm-block">
+            <a class="nav-link" href="{% url 'soon' %}">Gate App</a>
+          </li>
+          <li class="nav-item d-none d-sm-block">
+            <a class="nav-link" href="{% url 'soon' %}">Contact Details</a>
+          </li>
+        </ul>
+      </div> 
+    </nav>
+  </header>
 <!-- Adapted from CI Blog project    -->
   <div class="container">
     <div class="row">

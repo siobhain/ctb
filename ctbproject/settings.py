@@ -76,13 +76,6 @@ MESSAGE_TAGS = {
     }
 
 
-# sob For forever-cacheable files and compression support
-# sob This combines automatic compression with the caching behaviour
-# provided by Django’s ManifestStaticFilesStorage backend
-# actually Matt says in the masterclass to comment this out
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedMani...."
-
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -93,6 +86,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'ctbproject.urls'
 
@@ -198,3 +193,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# custom variable so user can change name of community group
+# COMMUNITY_GROUP = os.environ.get('COMMUNITY_GROUP', 'Tidy Towns')
+COMMUNITY_GROUP = 'Tidy Towns'
+
+
