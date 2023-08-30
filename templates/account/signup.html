@@ -5,14 +5,17 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h2>{% trans "Registration / Sign Up" %}</h2>
-
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-
+<div class="container-fluid text-center pt-3">
+  <div class="row">
+    <h2>Registration / Sign Up</h2>
+    <p>Already have an account? Then please <a href="{{ login_url }}">sign in</a></p>
+    <hr>
+  </div>
+</div>
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-6 col-md-6 col-12">
-      <p class="largefont">
+      <p>
         Once you have registered you will be able to 
         <ol> 
           <li>View outstanding Tasks on our Shared Task Board</li> 
@@ -21,13 +24,15 @@
           <li>Change text and/or status of any  you have added</li>
           <li>Delete Task you have added</li> 
         </ol>
-        The following functionality will be added in In the next version
+      </p>
+      <p>
+        The following functionality will be added in the future
         <ol> 
-          <li>Request another member be assigned a Task</li>
+          <li>Request another member be assigned a Task </li>
           <li>Change your passowrd, mobile number, email address</li> 
           <li>View contact details for other memebers</li> 
           <li>Received a unique Gate Code for entrance to facility</li> 
-          <li>View what members are onsite</li> 
+          <li>View what members are currently onsite</li> 
           <li>Leave commments/likes on any Task</li> 
         </ol>
       </p>
