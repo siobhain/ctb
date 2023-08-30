@@ -2,14 +2,15 @@
 {% block head_title %}Guest Home{% endblock %}
 {% block content %}
 
-<div class="container-fluid">
+<div class="container-fluid pt-3">
     <h2>Welcome to our volunteer group</h2>
-    <!-- Change this so that if Queryset is empty Table is not generated -->
+    <!-- Could be improved so that if Queryset is empty Table is not generated -->
     <h6>This board shows a few tasks we have completed, if you
         want to help then please  
         <a href="{% url 'account_signup' %}">Sign Up</a> as a member or
         contact our committee via SMS on 086 123 4567, Thank you
-    </h6> 
+    </h6>
+    <br> 
     <div class="table-responsive">
         <table class="table table-striped table-condensed">
             <thead>
@@ -23,7 +24,7 @@
                 <tr>
                     <td> {{ task.created_on|date:"d M" }} </td>
                     <td> {{ task.get_category_display }} </td>
-                    <td> {{ task }} </td>
+                    <td> {{ task.description|capfirst }} </td>
                 </tr>
             {% empty %}
                 <tr>

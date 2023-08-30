@@ -2,13 +2,14 @@
 {% block head_title %}Add Task{% endblock %}
 {% block content %}
 
-<div class="container-fluid">
+<div class="container-fluid pt-3">
     <div class="row">
         {% if user.is_authenticated %}
-            <div class="col-md-12">
+            <div class="col-md-8 offset-md-2">
                 <h2>Add a New Task</h2>
+                <hr>
             </div>
-            <form method="POST">
+            <form method="POST" class="col-md-8 offset-md-2">
                 <div>
                     {% csrf_token %}
                     {{ form.as_p }}

@@ -6,9 +6,9 @@
 
 {% block content %}
 
-<div class="container-fluid">
+<div class="container-fluid text-center pt-3">
   <div class="row">
-  <h1>{% trans "Sign In" %}</h1>
+  <h2>{% trans "Sign In" %}</h2>
    <form class="login" method="POST" action="{% url 'account_login' %}">
     {% csrf_token %}
     {{ form.as_p }}

@@ -3,13 +3,13 @@
 {% block head_title %}Update Task{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid pt-3">
     <div class="row">
         {% if created_by == user %} 
-            <div class="col-md-12">
+            <div class="col-md-8 offset-md-2">
                 <h2>Update a Task </h2>
             </div>
-            <form method="POST">
+            <form method="POST" class="col-md-8 offset-md-2">
                 <div>
                     {% csrf_token %}
                     {{ form.as_p }}
@@ -17,10 +17,12 @@
                 <button type="submit">Update Task</button>
                 <a id="cancel" href="/todo" class="btn btn-link">Cancel</button></a>
             </form>
-            {% else %}
-            <a  href="/" class="btn btn-outline-warning">Unauthorised Action : Go Home</button></a>
+        {% else %}
+            <div class="col-md-8 offset-md-2">
+                <a  href="/" class="btn btn-outline-warning">Unauthorised Action : Go Home</button></a>
+            </div>
         {% endif %}
-        </div>
+    </div>
 </div>
 
 {%endblock%}
