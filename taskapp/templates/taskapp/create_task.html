@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block head_title %}Add Task{% endblock %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 <div class="container-fluid pt-3">
@@ -12,7 +13,7 @@
             <form method="POST" class="col-md-8 offset-md-2">
                 <div>
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {{ form|crispy }}
                 </div>
                 <button type="submit">Add</button>
                 <a id="cancel" href="/todo" class="btn btn-link">Cancel</button></a>

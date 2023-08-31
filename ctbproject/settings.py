@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'cloudinary',
     'crispy_forms',
+    'crispy_bootstrap5',
     'taskapp',
 ]
 
@@ -65,7 +66,8 @@ LOGIN_URL = 'guest/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MESSAGE_TAGS = {
         messages.DEBUG: 'alert-info',
@@ -197,5 +199,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # custom variable so user can change name of community group
 # COMMUNITY_GROUP = os.environ.get('COMMUNITY_GROUP', 'Tidy Towns')
 COMMUNITY_GROUP = 'Tidy Towns'
-
 

@@ -19,6 +19,12 @@ h4 {
 }
 
 .navbar-nav .nav-link:hover {
-  color: #fff;
+  color: #fff !important;
+  font-weight: bold;
   background-color: #005f85;
+}
+
+/* div_id_description = crispy forms applied id for the Task Description <div> */
+#div_id_description {
+
 }
