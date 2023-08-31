@@ -297,5 +297,7 @@ from (https://www.w3schools.com/bootstrap5/bootstrap_tooltip)
 
 [Custom Signup Form](https://stackoverflow.com/questions/70809519/how-do-i-customize-django-allauth-sign-up-forms-to-look-the-way-i-want)
 
+[Form : multi line input field](https://ordinarycoders.com/blog/article/using-django-form-fields-and-widgets#google_vignette)
+
 ##### Back to [top](#table-of-contents)
 

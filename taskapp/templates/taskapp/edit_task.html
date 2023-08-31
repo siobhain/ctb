@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block head_title %}Update Task{% endblock %}
 
 {% block content %}
@@ -12,7 +12,7 @@
             <form method="POST" class="col-md-8 offset-md-2">
                 <div>
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {{ form|crispy }}
                 </div>
                 <button type="submit">Update Task</button>
                 <a id="cancel" href="/todo" class="btn btn-link">Cancel</button></a>

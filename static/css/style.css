@@ -24,7 +24,7 @@ h4 {
   background-color: #005f85;
 }
 
-/* div_id_description = crispy forms applied id for the Task Description <div> */
-#div_id_description {
-
+/* id_description = id for the Task Description <textarea> assigned by crispy*/
+#id_description {
+  width:  100%;
 }
