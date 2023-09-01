@@ -1,8 +1,22 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
 {% block head_title %}Update Task{% endblock %}
+{% load crispy_forms_tags %}
 
 {% block content %}
+<!-- edit_task.html
+    Receives context from views.edit_task
+    context = {
+        'form': form,
+        'created_by': created_by,
+    }
+
+    Defensive check if same user
+        Render Task instance in form
+        Submit or Cancel
+    else 
+        Unauthorised Action Message
+ -->
+
 <div class="container-fluid pt-3">
     <div class="row">
         {% if created_by == user %} 

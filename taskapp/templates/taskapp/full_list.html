@@ -8,7 +8,7 @@
         <div class="col-md-8 offset-md-2 text-center topbox">
             <h2>The Full Task Board</h2>
             <h5>
-                {% if  tasks|length > 2 %} 
+                {% if  task_length|length > 2 %} 
                     There are <strong>{{ tasks|length }}</strong> tasks altogether<br>
                 {%endif%}
             </h5>
@@ -28,6 +28,8 @@
                 <th>Status</th>
                 <th>Task Description</th>  
             </tr>
+        </thead>
+        <tbody>
             {% for task in task_list %}
             <tr>
                     <td> {{ task.created_on|date:"d M" }} </td>
@@ -49,25 +51,29 @@
                 </tr>
             {% empty %}
                 <td> {% now "d M" %} </td>
-                <td> NO TASKS</td>
-                <td> NO TASKS </td>
+                <td> - </td>
+                <td> - </td>
+                <td> - </td>
                 <td> {{ user.profile.firstname|capfirst }}, Do you need to
                     <a href="/create" class="btn btn-primary">Add a New Task</a>
                 </td>   
             {% endfor %}
-<!--             
-        {% for task in task_list %}
-            <tr>
-                <td> {{ task.created_on|date:"d M" }} </td>
-                <td> {{ task.created_by }} </td>
-                <td> {{ task.get_category_display }} </td>
-                <td> {{ task }} </td>
-            </tr>
-        {% empty %}
-            <tr> <td> Currently Empty!!</td></tr>    
-        {% endfor %}
-    </tbody> -->
-</table>
+        </tbody>    
+    </table>
 </div>
-
 {%endblock%}
+{% block extrabody %}
+
+<!-- From https://stackoverflow.com/questions/70216027/change-table-row-background-color-based-on-td-content -->
+
+<script>
+const CompletedCells = document.querySelectorAll('td:nth-child(4)');
+
+rows.forEach((row) => {
+  if (row.innerHTML === 'COMPLETED') {
+    const parent = row.parentNode;
+    parent.style.backgroundColor = 'green';
+  }
+});
+</script>
+{% endblock %}

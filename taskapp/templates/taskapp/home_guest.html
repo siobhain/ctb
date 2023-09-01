@@ -2,6 +2,16 @@
 {% block head_title %}Guest Home{% endblock %}
 {% block content %}
 
+<!-- home_guest.html
+    Page is rendered when no user logged in
+    User given option to register
+    
+    Receives queryset from views.GuestCompletedList ordered by latest
+    List has all completed Tasks
+    Iterate thru list and render first 10 records (slice)
+    or pleading message ot use if empty
+ -->
+
 <div class="container-fluid pt-3">
     <div class="row">
         <div class="col-md-8 offset-md-2 text-center topbox">
@@ -26,7 +36,7 @@
                     <th>Description</th>  
                 </tr>
             </thead>  
-            {% for task in task_list|slice:":5" %}
+            {% for task in task_list|slice:":10" %}
                 <tr>
                     <td> {{ task.created_on|date:"d M" }} </td>
                     <td> {{ task.get_category_display }} </td>

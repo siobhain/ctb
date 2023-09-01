@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 {% block head_title %}Add Task{% endblock %}
 {% load crispy_forms_tags %}
+
 {% block content %}
+<!-- create_task.html
+Renders empty TaskForm to create a new Task 
+Defensive build in with user.is_authenticated check
+    Submit/Cancel -> views.create_task 
+else 
+    Unauthorised Message
+ -->
 
 <div class="container-fluid pt-3">
     <div class="row">
@@ -19,7 +27,7 @@
                 <a href="/todo" class="btn btn-secondary">Cancel</a>
             </form>
             {% else %}
-            <a  href="/" class="btn btn-outline-warning">Unauthorised Action : Go Home</button></a>
+            <a  href="/" class="btn btn-outline-warning">Unauthorised Action : Go Home</a>
         {% endif %}
     </div>
 </div>
