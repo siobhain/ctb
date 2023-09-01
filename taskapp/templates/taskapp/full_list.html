@@ -6,7 +6,7 @@
 <div class="container-fluid pt-3">
     <div class="row">
         <div class="col-md-8 offset-md-2 text-center topbox">
-            <h2>The Full Task Board</h2>
+            <h2>The Full Published Task Board</h2>
             <h5>
                 {% if  task_length|length > 2 %} 
                     There are <strong>{{ tasks|length }}</strong> tasks altogether<br>
@@ -24,39 +24,39 @@
             <tr>
                 <th>Date</th>
                 <th>Created By</th>
+                <th>Done</th>
+                <th>Task Description</th>
                 <th>Category</th>
-                <th>Status</th>
-                <th>Task Description</th>  
             </tr>
         </thead>
         <tbody>
             {% for task in task_list %}
             <tr>
-                    <td> {{ task.created_on|date:"d M" }} </td>
-                    <td>{% if task.created_by == user %}
-                            YOURS
-                        {% else %}
-                            {{ task.created_by.profile.firstname|capfirst }}
-                            {{ task.created_by.profile.surname|capfirst }}
-                        {% endif %}
-                    </td>
-                    <td> {{ task.get_category_display }} </td>
-                    <td> {% if task.completed %}
-                            COMPLETED
-                        {% else %}
-                            Not Done
-                        {% endif %}
-                    </td>
-                    <td> {{ task|capfirst }} </td>
-                </tr>
+                <td> {{ task.created_on|date:"d M" }} </td>
+                <td>{% if task.created_by == user %}
+                        YOURS
+                    {% else %}
+                        {{ task.created_by.profile.firstname|capfirst }}
+                        {{ task.created_by.profile.surname|capfirst }}
+                    {% endif %}
+                </td>
+                <td> {% if task.completed %}
+                        YES
+                    {% else %}
+                        NO
+                    {% endif %}
+                </td>
+                <td> {{ task|capfirst }} </td>
+                <td> {{ task.get_category_display }} </td>
+            </tr>
             {% empty %}
                 <td> {% now "d M" %} </td>
                 <td> - </td>
                 <td> - </td>
-                <td> - </td>
                 <td> {{ user.profile.firstname|capfirst }}, Do you need to
                     <a href="/create" class="btn btn-primary">Add a New Task</a>
-                </td>   
+                </td> 
+                <td> - </td>
             {% endfor %}
         </tbody>    
     </table>

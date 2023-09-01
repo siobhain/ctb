@@ -13,6 +13,7 @@
                 {%endif%}
             </h5>    
             <a href="/create" class="btn btn-primary">Add a New Task</a>
+            <a href="/" class="btn btn-primary">Shared Task Board</a>
             <a href="/full" class="btn btn-primary">List All Tasks</a>
         </div> 
     <div class="table-responsive">
@@ -22,7 +23,8 @@
                     <th>Date</th>
                     <th>Action</th>
                     <th>Category</th>
-                    <th>Task Description</th>  
+                    <th>Task Description</th>
+                    <th>Status</th>  
                 </tr>
             </thead>
             <tbody>
@@ -41,6 +43,7 @@
                         </td>
                         <td> {{ task.get_category_display }} </td>
                         <td> {{ task|capfirst }} </td>
+                        <td> {{ task.get_status_display }}</td>
                     </tr>
                 {% empty %}
                     <td> {% now "d M" %} </td>

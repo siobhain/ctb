@@ -19,7 +19,7 @@ from .forms import TaskForm
 @login_required()
 def ctb_welcome(request):
     firstname = get_firstname(request)
-    tasks = Task.objects.filter(completed=False).order_by('-created_on')
+    tasks = Task.objects.filter(completed=False).filter(status=1).order_by('-created_on')
     context = {
         'tasks': tasks
     }
@@ -85,7 +85,7 @@ def edit_task(request, task_id):
             form.save()
             task = form.cleaned_data['description']
             length = len(task)
-            title = form.description if length <= 20 else task[:10] + "..." + task[-10:]
+            title = description if length <= 25 else task[:10] + "..." + task[-10:]
             name = get_firstname(request)
             messages.success(request, f'{name}, Update(s) to this Task \"{title.capitalize()}\" are reflected on the board')
         return redirect('/todo/')
@@ -127,7 +127,7 @@ def get_todo_list(request):
 # & is what general public / guests can see on Guest home page
 class GuestCompletedList(generic.ListView):
     model = Task
-    queryset = Task.objects.filter(completed=True).order_by('-created_on')
+    queryset = Task.objects.filter(completed=True).filter(status=1).order_by('-created_on')
     template_name = 'taskapp/home_guest.html'
 
 
@@ -144,6 +144,6 @@ class MemberTodoList(generic.ListView):
 # Same as above but with the Full list of Tasks, plan to use in topbox
 class FullTaskList(generic.ListView):
     model = Task
-    queryset = Task.objects.all().order_by('-created_on')
+    queryset = Task.objects.filter(status=1).order_by('-created_on')
     template_name = 'taskapp/full_list.html'
     

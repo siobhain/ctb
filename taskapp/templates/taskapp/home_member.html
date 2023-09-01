@@ -15,11 +15,11 @@
         <div class="col-md-8 offset-md-2 text-center topbox">
             <h2>Welcome {{ user.profile.firstname|capfirst }}</h2>
             <h5>
-                We have <strong>{{ tasks|length }}</strong> outstanding tasks outlined below<br>
+                This is the Shared Task Board & We have <strong>{{ tasks|length }}</strong> outstanding<br>
             </h5>
             <a href="/todo" class="btn btn-primary">{{ user.profile.firstname|capfirst }}'s Todo Board</a>
             <a href="/create" class="btn btn-primary">Add New Task</a>
-            <a href="/full" class="btn btn-primary">List All Tasks</a>
+            <a href="/full" class="btn btn-primary">List All Published Tasks</a>
         </div>
     </div>
 </div>    
@@ -29,8 +29,8 @@
             <tr>
                 <th>Date</th>
                 <th>Created By</th>
-                <th>Category</th>
-                <th>Task Description</th>  
+                <th>Task Description</th>
+                <th>Category</th>  
             </tr>
         </thead>
         {% for task in tasks %}
@@ -39,16 +39,17 @@
                 <td> {{ task.created_by.profile.firstname|capfirst}} 
                      {{task.created_by.profile.surname|capfirst}}
                 </td>
-                <td> {{ task.get_category_display }} </td>
                 <td> {{ task.description|capfirst }} </td>
+                <td> {{ task.get_category_display }} </td>
             </tr>
         {% empty %}
             <tr>
                 <td> {% now "d M" %} </td>
-                <td> NO TASKS </td>
-                <td> NO TASKS </td>
+                <td> - </td>
                 <td>Do you need to
                     <a href="/create" class="btn btn-primary">Add a new Task</a>
+                </td>
+                <td>-</td>
             </tr>
         {% endfor %}
     </table>

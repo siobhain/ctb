@@ -32,24 +32,24 @@
             <thead>
                 <tr>
                     <th>Date</th>
+                    <th>Description</th>
                     <th>Category</th>
-                    <th>Description</th>  
                 </tr>
             </thead>  
             {% for task in task_list|slice:":10" %}
                 <tr>
                     <td> {{ task.created_on|date:"d M" }} </td>
-                    <td> {{ task.get_category_display }} </td>
                     <td> {{ task.description|capfirst }} </td>
+                    <td> {{ task.get_category_display }} </td>
                 </tr>
             {% empty %}
                 <tr>
                     <td> {% now "d M" %} </td>
-                    <td> NOTHING DONE </td>
                     <td>Oh dear none of our tasks are completed...
                         Looks like we could use your help then, Go on 
                         <a href="{% url 'account_signup' %}">Sign Up</a>
                     </td>
+                    <td></td>
                 </tr>    
             {% endfor %}
         </table>
