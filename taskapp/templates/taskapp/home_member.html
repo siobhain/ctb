@@ -5,15 +5,15 @@
 {% block content %}
 <div class="container-fluid pt-3">
     <div class="row">
-        <h2>Welcome {{ user.profile.firstname|capfirst }}</h2>
-        {% if  tasks|length > 2 %} 
-            <br><h4>As of {% now "d M" %} we have {{ tasks|length }} outstanding Tasks</h4>
-        {%endif%}
-        <h4>
-            <br> If you have something new please <a href="/create"><button>Add</button></a> 
-            <br> If you need to update or remove task please <a href="/todo"><button>Update/Remove</button></a>
-        </h4> 
-        <hr>
+        <div class="col-md-8 offset-md-2 text-center topbox">
+            <h2>Welcome {{ user.profile.firstname|capfirst }}</h2>
+            <h5>
+                We have <strong>{{ tasks|length }}</strong> outstanding tasks outlined below<br>
+            </h5>
+            <a href="/todo" class="btn btn-primary">{{ user.profile.firstname|capfirst }}'s Todo Board</a>
+            <a href="/create" class="btn btn-primary">Add New Task</a>
+            <a href="/full" class="btn btn-primary">List All Tasks</a>
+        </div>
     </div>
 </div>    
 <div class="table-responsive">
@@ -41,7 +41,7 @@
                 <td> NO TASKS </td>
                 <td> NO TASKS </td>
                 <td>Do you need to
-                    <a href="/create"><button>Add</button></a></td>
+                    <a href="/create" class="btn btn-primary">Add a new Task</a>
             </tr>
         {% endfor %}
     </table>

@@ -3,14 +3,20 @@
 {% block content %}
 
 <div class="container-fluid pt-3">
-    <h2>Welcome to our volunteer group</h2>
+    <div class="row">
+        <div class="col-md-8 offset-md-2 text-center topbox">
+            <h2>Welcome to our volunteer group</h2>
+            <h4> Below you can view tasks we have recently completed, 
+                It will give you an idea of the type of voluntary 
+                work involved with our group, if you want to help please  
+                <a href="{% url 'account_signup' %}">Register or Sign Up</a> as a member, 
+                Alternatively contact our Committee via SMS on 086 123 4567. 
+            </h4>
+            <h2>Thank you </h2>
+            </p>
+        </div>
+    </div> 
     <!-- Could be improved so that if Queryset is empty Table is not generated -->
-    <h6>This board shows tasks we have completed recently, if you
-        want to help please  
-        <a href="{% url 'account_signup' %}">Register or Sign Up</a> as a member, 
-        Alternatively contact our Committee via SMS on 086 123 4567, Thank you
-    </h6>
-    <br> 
     <div class="table-responsive">
         <table class="table table-striped table-condensed">
             <thead>

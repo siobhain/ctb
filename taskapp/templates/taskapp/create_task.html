@@ -15,8 +15,8 @@
                     {% csrf_token %}
                     {{ form|crispy }}
                 </div>
-                <button type="submit">Add</button>
-                <a id="cancel" href="/todo" class="btn btn-link">Cancel</button></a>
+                <button class="btn btn-primary" type="submit">Add</button>
+                <a href="/todo" class="btn btn-secondary">Cancel</a>
             </form>
             {% else %}
             <a  href="/" class="btn btn-outline-warning">Unauthorised Action : Go Home</button></a>

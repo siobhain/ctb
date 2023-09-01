@@ -3,12 +3,18 @@ body {
 }
 
 .bg-white * {
-  background-color: antiquewhite;
-} 
+  background-color: #dfe6ea;
+ } 
+
+.topbox {
+  background-color: #dfe6ea;
+  border: solid;
+  padding-bottom: 3px;
+}
   
 .largefont > * {
-    font-size: 1.2rem;
-  }
+    font-size: 1.2rem !important;
+     }
 
 h4 {
   text-align: justify;
@@ -19,11 +25,20 @@ h4 {
 }
 
 .navbar-nav .nav-link:hover {
-  color: #fff !important;
-  font-weight: bold;
+  color: #dfe6ea !important;
   background-color: #005f85;
-}
+ }
 
+.btn-primary {
+  color: #dfe6ea;
+  background-color:  #005f85;
+ }
+
+ .btn-primary:hover {
+    background-color: #5c92b1;
+ }
+
+ /* .btn-secondary  */
 /* id_description = id for the Task Description <textarea> assigned by crispy*/
 #id_description {
   width:  100%;

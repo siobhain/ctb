@@ -28,7 +28,7 @@ class CustomSignupForm(SignupForm):
 class TaskForm(forms.ModelForm):
     model = Task
     description = forms.CharField(widget=forms.Textarea(attrs=
-                    {'rows': 3, 'cols': '40', 'maxlength': 120}), 
+                    {'rows': 2, 'cols': '40', 'maxlength': 120}), 
                     help_text='Max 120 characters & Remember once created only you can remove this Task')
 
     class Meta:
@@ -39,6 +39,6 @@ class TaskForm(forms.ModelForm):
         # }
        
         help_texts = {
-            'category': ('Please choose category most related to this Task'),
+            'category': ('Please choose category from dropdown most related to this Task'),
             'completed': ('Tick this box when Task is completed')
             }

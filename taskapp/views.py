@@ -114,7 +114,7 @@ def delete_task(request, task_id):
 
 @login_required()
 def get_todo_list(request):
-    tasks = Task.objects.filter(completed=False).order_by('-created_on')
+    tasks = Task.objects.filter(created_by=request.user).filter(completed=False).order_by('-created_on')
     context = {
         'tasks': tasks
     }
@@ -139,12 +139,11 @@ class MemberTodoList(generic.ListView):
     model = Task
     queryset = Task.objects.filter(completed=False).order_by('-created_on')
     template_name = 'taskapp/home_member.html'
-    paginate_by = 5
 
 
-# Same as above but with the Full list of Tasks, plan to use in navbar
+# Same as above but with the Full list of Tasks, plan to use in topbox
 class FullTaskList(generic.ListView):
     model = Task
     queryset = Task.objects.all().order_by('-created_on')
     template_name = 'taskapp/full_list.html'
-    paginate_by = 10
+    
