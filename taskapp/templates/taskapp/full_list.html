@@ -2,16 +2,24 @@
 
 {% block head_title %}Member Full{% endblock %}
 
+<!-- full_list.html
+    Rendered when authenticated user click on full List button
+    Receives list from views.FullTaskList ordered by latest
+    List has all published Tasks
+    Script changes all completed Tasks to green background
+ -->
+
 {% block content %}
 <div class="container-fluid pt-3">
     <div class="row">
         <div class="col-md-8 offset-md-2 text-center topbox">
             <h2>The Full Published Task Board</h2>
             <h5>
-                {% if  task_length|length > 2 %} 
-                    There are <strong>{{ tasks|length }}</strong> tasks altogether<br>
+                {% if  task_list|length > 2 %} 
+                    There are <strong>{{ task_list|length }}</strong> tasks altogether<br>
                 {%endif%}
             </h5>
+            <h6>Green rows signify Task is done</h6>
             <a href="/" class="btn btn-primary">Home</a>
             <a href="/todo" class="btn btn-primary">{{ user.profile.firstname|capfirst }}'s Todo Board</a>
             <br>
@@ -64,15 +72,19 @@
 {%endblock%}
 {% block extrabody %}
 
-<!-- From https://stackoverflow.com/questions/70216027/change-table-row-background-color-based-on-td-content -->
-
+<!-- 
+    Adapted from https://stackoverflow.com/questions/70216027/change-table-row-background-color-based-on-td-content
+    List the 3rd column of each table row
+    Check if it contains YES - which means the Task is completed/done
+    Change the color of the entire row via parentNode
+-->
 <script>
-const CompletedCells = document.querySelectorAll('td:nth-child(4)');
+const table_data_list = document.querySelectorAll('td:nth-child(3)');
 
-rows.forEach((row) => {
-  if (row.innerHTML === 'COMPLETED') {
-    const parent = row.parentNode;
-    parent.style.backgroundColor = 'green';
+table_data_list.forEach((td) => {
+   if (td.innerHTML.includes('YES')) {
+    const parent = td.parentNode;
+        parent.style.backgroundColor = '#80be40';
   }
 });
 </script>

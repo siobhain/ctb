@@ -57,6 +57,23 @@
         </table>
     </div> 
 </div>
+
+<!-- 
+    Adapted from https://stackoverflow.com/questions/70216027/change-table-row-background-color-based-on-td-content
+    Select the 5th column of each table row
+    Check if it contains DRAFT- which means the Task is not published
+    Change the color of the entire row via parentNode
+-->
+<script>
+    const table_data_list = document.querySelectorAll('td:nth-child(5)');
+    
+    table_data_list.forEach((td) => {
+       if (td.innerHTML.includes('Draft')) {
+        const parent = td.parentNode;
+            parent.style.backgroundColor = '#5c92b1';
+      }
+    });
+</script>
 {%endblock%}
 {% block extrabody %}
 <!-- from https://www.w3schools.com/bootstrap5/bootstrap_tooltip -->

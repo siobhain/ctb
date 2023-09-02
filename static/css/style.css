@@ -21,6 +21,11 @@ h4 {
   text-align: justify;
 }
 
+/* prefer lightgreen to the palette green #80be40 */
+h6 {
+    background-color: lightgreen;
+}
+
 .bold {
   font-weight: bold;
 }
