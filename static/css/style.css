@@ -22,7 +22,7 @@ h4 {
 }
 
 /* prefer lightgreen to the palette green #80be40 */
-h6 {
+.bg-lightgreen {
     background-color: lightgreen;
 }
 
