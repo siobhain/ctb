@@ -3,32 +3,6 @@ body {
   background-color:   lightblue;
 }
 
-.bg-white * {
-  background-color: #dfe6ea;
- } 
-
-.topbox {
-  background-color: #dfe6ea;
-  border: solid;
-  padding-bottom: 3px;
-}
-  
-.largefont > * {
-    font-size: 1.2rem !important;
-     }
-
-h4 {
-  text-align: justify;
-}
-
-/* prefer lightgreen to the palette green #80be40 */
-.bg-lightgreen {
-    background-color: lightgreen;
-}
-
-.bold {
-  font-weight: bold;
-}
 
 .navbar-nav .nav-link:hover {
   color: #dfe6ea !important;
@@ -44,7 +18,40 @@ h4 {
     background-color: #5c92b1;
  }
 
- /* .btn-secondary  */
+/* topbox used in most data pages at top of page */
+.topbox {
+  background-color: #dfe6ea;
+  border: solid;
+  padding-bottom: 3px;
+}
+  
+/* largefont : Used in Sign Up form page */
+.largefont > * {
+    font-size: 1.2rem !important;
+     }
+
+/* bold Used in Sign up instructions */
+.bold {
+  font-weight: bold;
+}
+
+
+/* Used in About page */
+h4 {
+  text-align: justify;
+}
+
+/* bg-lightgreen used to highlight Completed Tasks in Full List  */
+/* prefer lightgreen to the palette green #80be40 */
+.bg-lightgreen {
+    background-color: lightgreen;
+}
+
+/* bg-lightgrey used to highlight Draft Tasks in personalised ToDo list */
+.bg-lightgrey {
+  background-color: lightslategrey;
+}
+
 /* id_description = id for the Task Description <textarea> assigned by crispy*/
 #id_description {
   width:  100%;

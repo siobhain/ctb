@@ -11,7 +11,7 @@ else
     Unauthorised Message
  -->
 
-<div class="container-fluid pt-3">
+<div class="container-fluid py-3">
     <div class="row">
         {% if user.is_authenticated %}
             <div class="col-md-8 offset-md-2 text-center topbox">
@@ -22,9 +22,8 @@ else
                     it is changed to LIVE status and viewable by members
                 </h5>
             </div>
-            <div class="col-md-8 offset-md-2 text-center pt-3">
-                <h2>Add Task</h2>
-                <hr>
+            <div class="col-md-8 offset-md-2 pt-3">
+                <h4>New Task</h4>
             </div>
             <form method="POST" class="col-md-8 offset-md-2">
                 <div>

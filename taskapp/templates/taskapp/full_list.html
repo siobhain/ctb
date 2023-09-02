@@ -10,7 +10,7 @@
  -->
 
 {% block content %}
-<div class="container-fluid pt-3">
+<div class="container-fluid py-3">
     <div class="row">
         <div class="col-md-8 offset-md-2 text-center topbox">
             <h2>The Full Published Task Board</h2>
@@ -19,7 +19,7 @@
                     There are <strong>{{ task_list|length }}</strong> tasks altogether<br>
                 {%endif%}
             </h5>
-            <div class="bg-lightgreen">Green rows signify Task is done</div>
+            <div class="bg-lightgreen">Green rows signify Task is done<br></div>
             <a href="/" class="btn btn-primary">Home</a>
             <a href="/todo" class="btn btn-primary">{{ user.profile.firstname|capfirst }}'s Todo Board</a>
             <br>

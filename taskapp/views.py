@@ -14,8 +14,6 @@ from .forms import TaskForm
 # & if no user is logged in the guest will be redirected according to the
 # LOGIN_URL in settings.py which is 'guest/' & this url is routed to the
 # the CBV GuestCompletedList below => home_guest.html
-
-
 @login_required()
 def ctb_welcome(request):
     firstname = get_firstname(request)
@@ -37,7 +35,17 @@ def get_surname(request):
     profile = Profile.objects.get(user=request.user)
     return (profile.surname.capitalize())
 
-
+# create_task : Have to be  alogged in user to use thi view
+#
+# If its POST then user has already filled out the form
+# Otherwise its 1st pass thru this view and user has just 
+# requested to add a new task, so need an instance of TaskForm
+# send to the template create_task.html for render to user
+#
+# So with POST need to check form is_valid & if not send 
+# an error message to the user to try again
+# Once form is_valid Create a new Task with the info provided
+# & send Thanks you message to user
 @login_required()
 def create_task(request):
     if request.method == 'POST':
@@ -66,16 +74,22 @@ def create_task(request):
         return render(request, 'taskapp/create_task.html', {'form': form, })
 
 
-# edit_task could be further refined by having separate
-# CTA buttons/links for
-#   Mark Task as Done ie Conpleted
-#   Change the Category choice
-#   & add option to undo Conpleted tickbox
-# Won't get to this before submitting.
+# edit_task : Can only edit Task created_by yourself
 #
-# added extra variable created_by to context for defensive check in template
-# as unable to get defensive checks here at server level working
-
+# If its POST then user has already entered data
+# Otherwise its 1st pass thru this view and user has just 
+# requested to update a task passing the task_id, Details 
+# of the particular Task already retrieved from the database with
+# get_object_or_404, an instance of TaskForm is populated with 
+# the task details and this context is sent to template
+# edit_task.html for render to user, Also added extra variable
+# created_by to context for client side defensive check in template
+# as unable to get defensive checks at server level working correctly
+# ie login_required decorator on edit_task caused server errors
+#
+# With POST need to check form is_valid & if not return to
+# the todo page, Once form is_valid save the updated details
+# & send success message to user
 def edit_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     description = task.description
@@ -96,9 +110,14 @@ def edit_task(request, task_id):
         'created_by': created_by,
     }
     return render(request, 'taskapp/edit_task.html', context)
+# edit_task could be further refined by having separate
+# CTA buttons/links for
+#   Marking a Task as Done ie Conpleted
+#   Changing the Category choice
+#   Option to undo Conpleted tickbox
 
 
-# delete task is rudimentary, unable to get modal to work :-(, had to revert
+# delete task is rudimentary, unable to get modal to work, had to revert
 @login_required()
 def delete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
@@ -112,6 +131,7 @@ def delete_task(request, task_id):
     return redirect('/todo')
 
 
+# get_todo_list : List of Tasks created by the logged in user & that are NOT completed
 @login_required()
 def get_todo_list(request):
     tasks = Task.objects.filter(created_by=request.user).filter(completed=False).order_by('-created_on')
@@ -127,7 +147,7 @@ def get_todo_list(request):
 # & is what general public / guests can see on Guest home page
 class GuestCompletedList(generic.ListView):
     model = Task
-    queryset = Task.objects.filter(completed=True).filter(status=1).order_by('-created_on')
+    queryset = Task.objects.filter(completed=True).filter(status=1).order_by('-modified_on')
     template_name = 'taskapp/home_guest.html'
 
 
@@ -141,9 +161,10 @@ class MemberTodoList(generic.ListView):
     template_name = 'taskapp/home_member.html'
 
 
-# Same as above but with the Full list of Tasks, plan to use in topbox
+# FullTasklist : Same as above but with the Full list of Tasks,  
+# Used in topbox button in home_member.html
+# view rendered by full_list.html
 class FullTaskList(generic.ListView):
     model = Task
     queryset = Task.objects.filter(status=1).order_by('-created_on')
     template_name = 'taskapp/full_list.html'
-    

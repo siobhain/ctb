@@ -2,8 +2,14 @@
 
 {% block head_title %}Todo{% endblock %}
 
+<!-- todo_list.html
+    Rendered when authenticated user click on their own ToDo button
+    Receives list from views.get_todo_list FBV ordered by latest
+    Script changes all draft Tasks to grey background
+ -->
+
 {% block content %}
-<div class="container-fluid pt-3">
+<div class="container-fluid py-3">
     <div class="row">
         <div class="col-md-8 offset-md-2 text-center topbox">
             <h2>{{ user.profile.firstname|capfirst }}'s Todo Board</h2>
@@ -12,7 +18,7 @@
                     You have {{ tasks|length }} outstanding tasks<br> 
                 {%endif%}
             </h5>
-            <div class="bg-lightgreen"> Indicates Task is in Draft Status </div>
+            <div class="bg-lightgrey"> A grey row indicates the Task is in Draft Status<br> </div>
                 
             <a href="/create" class="btn btn-primary">Add a New Task</a>
             <a href="/" class="btn btn-primary">Shared Task Board</a>
@@ -34,9 +40,9 @@
                     <tr>
                         <td class="d-none d-sm-block"> {{ task.created_on|date:"d M" }} </td>
                         <td>{% if task.created_by == user %}
-                                <a href="/edit/{{ task.id }}" class="btn btn-primary">Update</a>
+                                <a href="/edit/{{ task.id }}" class="btn btn-primary btn-sm">Update</a>
                                 <a href="/delete/{{task.id}}">
-                                    <button class="btn btn-danger" data-bs-toggle="tooltip" title="Delete cannot be undone">Delete Task</button>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="tooltip" title="Delete cannot be undone">Delete</button>
                                 </a>
                             {% else %}
                                 {{ task.created_by.profile.firstname|capfirst }}
@@ -73,7 +79,7 @@
     table_data_list.forEach((td) => {
        if (td.innerHTML.includes('Draft')) {
         const parent = td.parentNode;
-            parent.style.backgroundColor = 'lightgreen';
+            parent.style.backgroundColor = 'lightslategrey';
       }
     });
 </script>

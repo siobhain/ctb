@@ -2,15 +2,16 @@
 {% block head_title %}Member Home{% endblock %}
 
 {% block content %}
-<!-- home_guest.html
+
+<!-- home_member.html
     Page is rendered when user is logged in
-    Welcome User message
-    Receives queryset from views.GuestCompletedList ordered by latest
-    List has all completed Tasks
-    Iterate thru list and render first 10 records (slice)
-    or pleading message ot use if empty
+    Its the Shared Task Board
+    Receives queryset from views.ctb_welcome ordered by latest
+    List has all outstanding (not done) Tasks
+    Buttons to Add a new Task, View own ToDo list, View All
  -->
-<div class="container-fluid pt-3">
+
+ <div class="container-fluid py-3">
     <div class="row">
         <div class="col-md-8 offset-md-2 text-center topbox">
             <h2>Welcome {{ user.profile.firstname|capfirst }}</h2>
