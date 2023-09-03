@@ -66,10 +66,10 @@ def create_task(request):
                 category=category,
                 created_by=created_by)
             length = len(task)
-            title = task if length <= 20 else task[:10] + "..." + task[-10:]
+            tle = task if length <= 20 else task[:10] + "..." + task[-10:]
             messages.success(
                 request,
-                f'Thank you {name}, Task \"{title.capitalize()}\" has been added')
+                f'Thank you {name}, Task \"{tle.capitalize()}\" added')
             return redirect('/todo/')
         else:
             messages.error(
@@ -111,7 +111,7 @@ def edit_task(request, task_id):
             name = get_firstname(request)
             messages.success(
                 request,
-                f'{name}, Update(s) to this Task \"{title.capitalize()}\" are reflected on the board')
+                f'{name}, Update to \"{title.capitalize()}\" reflected below')
         return redirect('/todo/')
     form = TaskForm(instance=task)
     created_by = task.created_by
@@ -136,7 +136,7 @@ def delete_task(request, task_id):
     if task.created_by == request.user:
         messages.success(
             request,
-            f'{name}, You have REMOVED this Task \"{description.capitalize()}\"')
+            f'{name}, You have DELETED \"{description.capitalize()}\"')
         task.delete()
     else:
         messages.warning(
