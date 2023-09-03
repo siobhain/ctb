@@ -7,7 +7,8 @@ from django.dispatch import receiver
 from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Live"))
-WORKCATEGORY = ((1, "Manual Work"), (2, "Admin Work"), (3, "Campaign Work"), (4, "Other"))
+WORKCATEGORY = ((1, "Manual Work"), (2, "Admin Work"),
+                (3, "Campaign Work"), (4, "Other"))
 ROI = (('083', '083'), ('085', '085'), ('086', '086'), ('087', '087'))
 
 
@@ -42,12 +43,23 @@ class Task(models.Model):
     # Task model for holding details of each task
     #
     # attached_image & likes are for use in future version
-    description = models.CharField(max_length=120, unique=True, null=False, blank=False)
+    description = models.CharField(
+        max_length=120,
+        unique=True,
+        null=False,
+        blank=False)
     slug = models.SlugField(max_length=120, unique=True)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks')
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='tasks')
     created_on = models.DateTimeField(auto_now_add=True)
     modified_on = models.DateTimeField(auto_now=True)
-    category = models.IntegerField(choices=WORKCATEGORY, default=0, blank=False, null=False)
+    category = models.IntegerField(
+        choices=WORKCATEGORY,
+        default=0,
+        blank=False,
+        null=False)
     completed = models.BooleanField(default=False, blank=False, null=False)
     status = models.IntegerField(choices=STATUS, default=0)
     attached_image = CloudinaryField('image', default='placeholder')

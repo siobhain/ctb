@@ -9,7 +9,12 @@ class CustomSignupForm(SignupForm):
     firstname = forms.CharField(max_length=15, required=True)
     surname = forms.CharField(max_length=15, required=True)
     mobile_prefix = forms.ChoiceField(choices=ROI, required=True)
-    mobile_number = forms.CharField(max_length=7, required=True, validators=[RegexValidator(regex=r'^\d{7}$', message='Mobile needs 7 digits please')])
+    mobile_number = forms.CharField(
+        max_length=7,
+        required=True,
+        validators=[
+            RegexValidator(
+                regex=r'^\d{7}$', message='Mobile needs 7 digits please')])
 
     def save(self, request):
         # self.fields.pop('email')
@@ -20,25 +25,28 @@ class CustomSignupForm(SignupForm):
             surname=self.cleaned_data['surname'],
             mobile_prefix=self.cleaned_data['mobile_prefix'],
             mobile_number=self.cleaned_data['mobile_number'],
-         )
+        )
         user_profile.save()
         return user
 
 
 class TaskForm(forms.ModelForm):
     model = Task
-    description = forms.CharField(widget=forms.Textarea(attrs=
-                    {'rows': 2, 'cols': '40', 'maxlength': 120}), 
-                    help_text='Max 120 characters & Remember once created only you can remove this Task')
+    description = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                'rows': 2,
+                'cols': '40',
+                'maxlength': 120
+            }
+        ),
+        help_text='Max 120 char & once created only you can remove this Task'
+    )
 
     class Meta:
         model = Task
         fields = ('category', 'description', 'completed')
-        # widgets = {
-        #     'description': forms.TextInput(attrs={'size': '120'}),
-        # }
-       
+
         help_texts = {
-            'category': ('Please choose category from dropdown most related to this Task'),
-            'completed': ('Tick this box when Task is completed')
-            }
+            'category': ('Pick category most related to this Task'),
+            'completed': ('Tick this box when Task is completed')}

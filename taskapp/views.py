@@ -17,7 +17,9 @@ from .forms import TaskForm
 @login_required()
 def ctb_welcome(request):
     firstname = get_firstname(request)
-    tasks = Task.objects.filter(completed=False).filter(status=1).order_by('-created_on')
+    tasks = Task.objects.filter(
+        completed=False).filter(
+        status=1).order_by('-created_on')
     context = {
         'tasks': tasks
     }
@@ -38,14 +40,16 @@ def get_surname(request):
 # create_task : Have to be  alogged in user to use thi view
 #
 # If its POST then user has already filled out the form
-# Otherwise its 1st pass thru this view and user has just 
+# Otherwise its 1st pass thru this view and user has just
 # requested to add a new task, so need an instance of TaskForm
 # send to the template create_task.html for render to user
 #
-# So with POST need to check form is_valid & if not send 
+# So with POST need to check form is_valid & if not send
 # an error message to the user to try again
 # Once form is_valid Create a new Task with the info provided
 # & send Thanks you message to user
+
+
 @login_required()
 def create_task(request):
     if request.method == 'POST':
@@ -63,10 +67,13 @@ def create_task(request):
                 created_by=created_by)
             length = len(task)
             title = task if length <= 20 else task[:10] + "..." + task[-10:]
-            messages.success(request, f'Thank you {name}, Task \"{title.capitalize()}\" has been added')
+            messages.success(
+                request,
+                f'Thank you {name}, Task \"{title.capitalize()}\" has been added')
             return redirect('/todo/')
         else:
-            messages.error(request, f'Error adding a  task, Please try again {name}')
+            messages.error(
+                request, f'Error adding a  task, Please try again {name}')
             form = TaskForm()
             return render(request, 'taskapp/create_task.html', {'form': form})
     else:
@@ -77,10 +84,10 @@ def create_task(request):
 # edit_task : Can only edit Task created_by yourself
 #
 # If its POST then user has already entered data
-# Otherwise its 1st pass thru this view and user has just 
-# requested to update a task passing the task_id, Details 
+# Otherwise its 1st pass thru this view and user has just
+# requested to update a task passing the task_id, Details
 # of the particular Task already retrieved from the database with
-# get_object_or_404, an instance of TaskForm is populated with 
+# get_object_or_404, an instance of TaskForm is populated with
 # the task details and this context is sent to template
 # edit_task.html for render to user, Also added extra variable
 # created_by to context for client side defensive check in template
@@ -99,9 +106,12 @@ def edit_task(request, task_id):
             form.save()
             task = form.cleaned_data['description']
             length = len(task)
-            title = description if length <= 25 else task[:10] + "..." + task[-10:]
+            title = description if length <= 25 else task[:10] + \
+                "..." + task[-10:]
             name = get_firstname(request)
-            messages.success(request, f'{name}, Update(s) to this Task \"{title.capitalize()}\" are reflected on the board')
+            messages.success(
+                request,
+                f'{name}, Update(s) to this Task \"{title.capitalize()}\" are reflected on the board')
         return redirect('/todo/')
     form = TaskForm(instance=task)
     created_by = task.created_by
@@ -124,17 +134,24 @@ def delete_task(request, task_id):
     description = task.description
     name = get_firstname(request)
     if task.created_by == request.user:
-        messages.success(request, f'{name}, You have REMOVED this Task \"{description.capitalize()}\"')
+        messages.success(
+            request,
+            f'{name}, You have REMOVED this Task \"{description.capitalize()}\"')
         task.delete()
     else:
-        messages.warning(request, "You can only remove a Task that was created by YOU")
+        messages.warning(
+            request,
+            "You can only remove a Task that was created by YOU")
     return redirect('/todo')
 
 
-# get_todo_list : List of Tasks created by the logged in user & that are NOT completed
+# get_todo_list : List of Tasks created by the logged in user & that are
+# NOT completed
 @login_required()
 def get_todo_list(request):
-    tasks = Task.objects.filter(created_by=request.user).filter(completed=False).order_by('-created_on')
+    tasks = Task.objects.filter(
+        created_by=request.user).filter(
+        completed=False).order_by('-created_on')
     context = {
         'tasks': tasks
     }
@@ -147,7 +164,9 @@ def get_todo_list(request):
 # & is what general public / guests can see on Guest home page
 class GuestCompletedList(generic.ListView):
     model = Task
-    queryset = Task.objects.filter(completed=True).filter(status=1).order_by('-modified_on')
+    queryset = Task.objects.filter(
+        completed=True).filter(
+        status=1).order_by('-modified_on')
     template_name = 'taskapp/home_guest.html'
 
 
@@ -161,7 +180,7 @@ class MemberTodoList(generic.ListView):
     template_name = 'taskapp/home_member.html'
 
 
-# FullTasklist : Same as above but with the Full list of Tasks,  
+# FullTasklist : Same as above but with the Full list of Tasks,
 # Used in topbox button in home_member.html
 # view rendered by full_list.html
 class FullTaskList(generic.ListView):

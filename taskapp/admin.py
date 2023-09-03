@@ -4,7 +4,14 @@ from .models import Profile, Task
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('firstname', 'surname', 'gate_code', 'mobile_prefix', 'mobile_number', 'user')
+    list_display = (
+        'firstname',
+        'surname',
+        'gate_code',
+        'mobile_prefix',
+        'mobile_number',
+        'user'
+    )
     list_filter = ('user', 'firstname', 'surname')
     search_fields = ['firstname', 'surname', 'user']
     actions = ['change_gate_code', 'new_mobile']
@@ -20,9 +27,25 @@ class ProfileAdmin(admin.ModelAdmin):
 class TaskAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('description',)}
     list_filter = ('created_by', 'category', 'completed', 'status')
-    list_display = ('description', 'status', 'created_by', 'completed', 'category')
-    search_fields = ['completed', 'description', 'status', 'category']
-    actions = ['publish_task', 'unpublish_task', 'complete_task', 'change_to_new']
+    list_display = (
+        'description',
+        'status',
+        'created_by',
+        'completed',
+        'category'
+    )
+    search_fields = [
+        'completed',
+        'description',
+        'status',
+        'category'
+    ]
+    actions = [
+        'publish_task',
+        'unpublish_task',
+        'complete_task',
+        'change_to_new'
+    ]
 
     def publish_task(self, request, queryset):
         queryset.update(status=True)
