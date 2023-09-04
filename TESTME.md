@@ -125,45 +125,33 @@ Here are Lighthouse reports for the deployed project
 
 ### HTML
 
-The [HTML W3C Validator](https://validator.w3.org/) to validate all HTML files.
+[HTML W3C Validator](https://validator.w3.org/) Scerenshots
 
-The result for each page are listed bellow:
 
 |Page |Screenshot | Notes  | 
 |:---:|:----------------------:|---|
-| Home (Landing) |  Second test: ![HTML Validation - Home](docs/v-html-home.jpg) |First test: **Warning**: The type attribute is unnecessary for JavaScript resources. - Removed from script.|
-| Sign  Up | ![HTML Validation - Singup](docs/v-html-signup.jpg)  |
-| Sign  In | ![HTML Validation - Singin](docs/v-html-signin.jpg)  |
-| Sign  Out | ![HTML Validation - Singout](docs/v-html-signout.jpg) ![HTML Validation - Singout](docs/v-html-signout-id.jpg) | The error message was ignored, because the the `aria-controls` identifies an element in the same document whose contents are controlled by the current element.  |
-| Reset Password |  Second test: ![HTML Validation - Password Reset](docs/v-html-password-reset.jpg)  |First test: Error: Attribute mt-2 not allowed on element p at this point. - Add the missed `class=" "`.|
-| Reset Password Done |  ![HTML Validation - Password Reset Done](docs/v-html-password-reset-done.jpg) |
-| Home (Main Feed - Logged in) |  ![HTML Validation - Main Feed](docs/v-html-main-feed.jpg) |
-| Following |  First test: ![HTML Validation - Following Feed](docs/v-html-following-1.jpg) Second test ![HTML Validation - Following Feed](docs/v-html-following-2.jpg) |"Picture uploaded" was added as an alt attribute to uploaded image by user. |
-| Post Detail | ![HTML Validation - Post Detail](docs/v-html-post-detail.jpg)  |
-| Edit post |  ![HTML Validation - Edit Post](docs/v-html-post-edit.jpg) |
-| Delete post |  ![HTML Validation - Delete Post](docs/v-html-post-delete.jpg) |
-| Edit comment | ![HTML Validation - Edit Comment](docs/v-html-comment-edit.jpg)  |
-| Delete comment | ![HTML Validation - Delete Comment](docs/v-html-comment-delete.jpg)  |
-| Users | First test: ![HTML Validation - Users](docs/v-html-users-1.jpg) Second test: ![HTML Validation - Users](docs/v-html-users-2.jpg) |The escape `&amp;` was added.
-| Search |  First test: ![HTML Validation - Search](docs/v-html-search.jpg) Second test: ![HTML Validation - ](docs/v-html-search-2.jpg)| The escape `&amp;` was added.
-| Profile |  First test: ![HTML Validation - Profile](docs/v-html-profile.jpg) Second test: ![HTML Validation - Profile](docs/v-html-profile-2.jpg) |`<h3/>` written in the right place.|
-| Profile Update |  ![HTML Validation - Profile Update](docs/v-html-profile-update.jpg) |
-| Change Password | First test: ![HTML Validation - Change Password](docs/v-html-password-change-error.jpg) Second test: ![HTML Validation - Change Password](docs/v-html-password-change.jpg) | Div was removed. |
-| Followers | ![HTML Validation - Followers](docs/v-html-followers.jpg)  |
-| Error 403 |  ![HTML Validation - Error 403](docs/v-html-error-403.jpg) |
-| Error 404 | ![HTML Validation - Error 404](docs/v-html-error-404.jpg)  |
-| Error 500 | ![HTML Validation - Error 500](docs/v-html-error-500.jpg)  |
+| Home Guest |![HTML Validation - Guest](docs/v-guest.jpg) |Observe on html source 4th line the Title CTB is Guest Home|
+| Home Member |![HTML Validation - Main Feed](docs/v-member.jpg) | ||
+| Sign  Up | ![HTML Validation - Signup](docs/v-signup.jpg)  |
+| Sign  In | ![HTML Validation - Signin](docs/v-signin.jpg)  | Validate by the page source
+| Log  In | ![HTML Validation - Signin](docs/v-login.jpg)  | Validate by the address
+| Sign  Out | ![HTML Validation - Signout](docs/v-signout.jpg)  |
+| Todo |  ![HTML Validation - Todo](docs/v-todo.jpg) | Yes there is a problem here as strictly speaking one should not have a button inside an anchor tag, This button is the Delete Task action.  The original plan was to use a modal when the user requested to delete a Task, but unfortunatley I could not get the Task ID data to the modal, I then had to revert to some sort of basic warning to the user so that where I started to use the tooltip to pop up a message to the user that this action cannot be undone & afaik to get the tooltip working I neede to use the button element.|
+| Full |  ![HTML Validation - Full](docs/v-full.jpg) |
+| Add Task |  ![HTML Validation - Add Task](docs/v-mewtask.jpg) |
+| Update Task |  ![HTML Validation - Full](docs/v-update.jpg) |
+| 404 | ![HTML Validation - Error 404](docs/v-404.jpg)  |
+| Gate | ![HTML Validation - Gate](docs/v-soon.jpg)  |
 
 - - - 
 
 
 ### CSS
 
-The [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/) was used to validate the CSS file.
 
-| File | Screenshot | Notes |
-| --- | --- | --- |
-| style.css | ![style.css](docs/v-css.jpg) | ![style.css warning](docs/v-css-warning.jpg) |
+[HTML W3C Validator](https://validator.w3.org/) also used to validate the css as shown :
+
+![style.css](docs/v-css.jpg) |
 
 - - - 
 
