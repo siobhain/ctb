@@ -1,24 +1,24 @@
 <h1> Community Task Board </h1>
 
-Ireland’s community, voluntary and charity sector makes a very substantial contribution to society in general, There are almost 10,000 registered charities and a further 20,000+ organisations in Ireland’s wider nonprofit sector. This app is a simple tool that can be used by groups in this sector to aid in management and administration of tasks assigned to members of the group.
+Ireland’s community, voluntary and charity sector makes a very substantial contribution to society in general. This app is a simple tool that can be used by groups in this sector to aid in management and administration of tasks assigned to voluntary members of the group.
 
 <!-- TOC -->
 
-    - [About](#about)
-    - [Agile Metodology](#agile-metodology)
-        - [Sprints](#sprints)
-        - [<u>Milestone Sprints screenshot at 3rd Sprint</u>](#umilestone-sprints-screenshot-at-3rd-sprintu)
-        - [US & EPICS](#us--epics)
-        - [Velocity & Story Points](#velocity--story-points)
-    - [User Experience Design UXD](#user-experience-design-uxd)
-        - [Stategy](#stategy)
-            - [Owner Goals](#owner-goals)
-            - [User Goals](#user-goals)
-            - [Target Audience](#target-audience)
-            - [User Requirements and Expectations](#user-requirements-and-expectations)
-            - [Scope / User Stories#user-stories](#scope--user-storiesuser-stories)
-        - [Structure](#structure)
-            - [Database](#database)
+- [About](#about)
+- [Agile Metodology](#agile-metodology)
+    - [Sprints](#sprints)
+    - [<u>Milestone Sprints screenshot at 3rd Sprint</u>](#umilestone-sprints-screenshot-at-3rd-sprintu)
+    - [US & EPICS](#us--epics)
+    - [Velocity & Story Points](#velocity--story-points)
+- [User Experience Design UXD](#user-experience-design-uxd)
+    - [Stategy](#stategy)
+        - [Owner Goals](#owner-goals)
+        - [User Goals](#user-goals)
+        - [Target Audience](#target-audience)
+        - [User Requirements and Expectations](#user-requirements-and-expectations)
+        - [Scope / User Stories#user-stories](#scope--user-storiesuser-stories)
+    - [Structure](#structure)
+        - [Database](#database)
 - [firstname = models.CharFieldmax_length=15, validators=[MinLengthValidator2]](#firstname--modelscharfieldmax_length15-validatorsminlengthvalidator2)
         - [Skeleton](#skeleton)
             - [Wireframes](#wireframes)

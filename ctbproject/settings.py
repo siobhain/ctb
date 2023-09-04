@@ -28,7 +28,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ctbapp-67038c5a6f0e.herokuapp.com', '8000-siobhain-ctb-6gc3ots84ox.ws-eu104.gitpod.io', '8000-siobhain-ctb-ii4y9sbki1o.ws-eu104.gitpod.io']
+ALLOWED_HOSTS = ['ctbapp-67038c5a6f0e.herokuapp.com',
+                 '8000-siobhain-ctb-6gc3ots84ox.ws-eu104.gitpod.io',
+                 '8000-siobhain-ctb-ii4y9sbki1o.ws-eu104.gitpod.io']
 
 # Application definition
 
@@ -70,12 +72,12 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MESSAGE_TAGS = {
-        messages.DEBUG: 'alert-info',
-        messages.INFO: 'alert-info',
-        messages.SUCCESS: 'alert-success',
-        messages.WARNING: 'alert-warning',
-        messages.ERROR: 'alert-danger',
-    }
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 
 MIDDLEWARE = [
@@ -199,4 +201,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # custom variable so user can change name of community group
 # COMMUNITY_GROUP = os.environ.get('COMMUNITY_GROUP', 'Tidy Towns')
 COMMUNITY_GROUP = 'Tidy Towns'
-

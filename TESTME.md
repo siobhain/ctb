@@ -23,7 +23,8 @@ The deployed project was tested on multiple devices for responsiveness issues.
 
 ![Responsiveness](docs/amires.JPG)
 
-You will observe the tag line under the logo is expanded as screen size increases, & the navbar on mobile is a cut down version of navbar on full screen. The following Bootstrap classes `table-responsive table-condensed nav-expand sticky-top (if I can get it working) d-none d-*-block` aid responsiviness & avoid need for media queries. However I have encountered a problem with table alignment which I hope can be sorted before submitting [link to table on Full Task List on > small screens]() 
+You will observe the tag line under the logo is expanded as screen size increases, & the navbar on mobile is a cut down version of navbar on full screen. The following Bootstrap classes `table-responsive table-condensed nav-expand d-none d-*-block` aid responsiviness & avoid need for media queries. However I have encountered a problem with table alignment which I hope can be sorted before submitting [link to table on Full Task List on > small screens]() 
+It would be better UX if I could have implemented a sticky-navbar.
 
 |Device| Screenshot | 
 |:---|:---: |
@@ -42,7 +43,7 @@ You will observe the tag line under the logo is expanded as screen size increase
 <details>
 <summary>👇</summary>
 
-The deployed project was tested on 3 browsers to check for compatibility issues and works as expected.
+The deployed project was tested on 3 browsers to check for compatibility issues and works as expected. 
 
 |Browser | Screenshot | 
 |:---:|:---: |
@@ -157,50 +158,32 @@ Here are Lighthouse reports for the deployed project
 
 ### JAVASCRIPT
 
-The [JShint Validator](https://jshint.com/) was used to validate the JavaScript file.
-
-| File | Screenshot | Notes |
-| --- | --- | --- |
-| titbit.js | ![screenshot](docs/v-javascript.jpg) | Unused variables: commentReply Toggle, showNotifications and removeNotifications |
-
+The [JShint Validator](https://jshint.com/) was used to validate the JavaScript snippets.
 
 - - - 
 
 
 ### PYTHON
 
-The [Code Institute Python Linter](https://pep8ci.herokuapp.com)was used to validate all Python files.
+The [Code Institute Python Linter](https://pep8ci.herokuapp.com) was used to validate Python files.
 
-#### Network project
+#### CTBPROJECT
 
 | File | Screenshot  | Notes|
 | --- | ------ |:---:|
-| settings.py |  ![Settings](docs/v-network-settings.jpg) | Pass - Line too long due to AUTH_PASSWORD_VALIDATORS|
-| urls.py (main) |  ![Urls](docs/v-network-urls.jpg) | Pass |
-| views.py | ![Views](docs/v-network-views.jpg)  | Pass |
+| settings.py |  ![Settings](docs/v-settings.jpg) | Pass |
+| urls.py (main) |  ![Urls](docs/v-purls.jpg) | Pass |
 
 
-#### Home app
-
-| File | Screenshot  | Notes|
-| --- | --- | --- |
-| urls.py | ![Urls](docs/v-home-urls.jpg)  | Pass |
-| views.py | ![Views](docs/v-home-views.jpg)  | Pass |
-| custom_tags.py |  ![Custom Tags](docs/v-home-custom-tags.jpg) | Pass |
-
-
-#### Titbit app
+#### TASKAPP app
 
 | File | Screenshot  | Notes|
 | --- | --- | --- |
-| admin.py | ![Admin](docs/v-titbit-admin.jpg)  | Pass |
-| forms.py | ![Forms](docs/v-titbit-forms.jpg)  | Pass |
-| models.py | ![Models](docs/v-titbit-models.jpg)  | Pass |
-| tests.py |  ![Tests](docs/v-titbit-tests.jpg)  | Pass |
-| urls.py |  ![Urls](docs/v-titbit-urls.jpg) | Pass |
-| views.py | ![Views](docs/v-titbit-views.jpg)  | Pass |
-
-</details>
+| admin.py | ![Admin](docs/v-admin.jpg)  | Pass |
+| forms.py | ![Forms](docs/v-forms.jpg)  | Pass |
+| models.py | ![Models](docs/v-models.jpg)  | Pass |
+| urls.py |  ![Urls](docs/v-urls.jpg) | Pass |
+| views.py | ![Views](docs/v-views.jpg)  | Pass |
 
 - - -
 
