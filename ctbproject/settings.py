@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # DISABLE_COLLECTSTATIC = 1
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['ctbapp-67038c5a6f0e.herokuapp.com',
                  '8000-siobhain-ctb-6gc3ots84ox.ws-eu104.gitpod.io',
